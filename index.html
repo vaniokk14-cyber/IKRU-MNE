@@ -29,12 +29,63 @@ header p {
   opacity: 0.9;
 }
 
-.container {
-  padding: 20px;
+..container {
+  padding: 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 15px;
-  justify-items: center;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 120px; /* делаем одинаковый размер фото */
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #38bdf8;
+  margin-bottom: 5px;
+}
+
+button {
+  width: 100%;
+  background: linear-gradient(90deg, #0ea5e9, #2563eb);
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
   
 }
 }
