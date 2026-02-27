@@ -20,7 +20,6 @@ header {
 header h1 {
   margin: 0;
   font-size: 24px;
-  letter-spacing: 1px;
 }
 
 header p {
@@ -33,7 +32,6 @@ header p {
   font-size: 18px;
   font-weight: 700;
   margin: 20px 0 10px;
-  text-align: left;
   padding-left: 15px;
   color: #38bdf8;
 }
@@ -41,7 +39,7 @@ header p {
 .container {
   padding: 0 15px 20px 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2 карточки в ряд */
   gap: 15px;
   justify-items: center;
 }
@@ -62,7 +60,7 @@ header p {
 
 .card img {
   width: 100%;
-  height: 180px;
+  height: 180px; /* крупный вид */
   object-fit: cover;
 }
 
@@ -107,6 +105,14 @@ button:hover {
   opacity: 0.85;
 }
 
+#cart {
+  padding: 15px;
+  background: #111827;
+  color: white;
+  margin: 10px 15px;
+  border-radius: 10px;
+}
+
 footer {
   text-align: center;
   padding: 20px;
@@ -130,8 +136,8 @@ footer {
     <img src="forel.jpg" />
     <div class="card-content">
       <div class="title">Форель (тушка)</div>
-      <div class="price">13€ / кг (~19–35€ за шт.)</div>
-      <button onclick="order('Форель тушка')">Заказать</button>
+      <div class="price">13€ / кг (~19–35€)</div>
+      <button onclick="addToCart('Форель тушка', 13)">Добавить в корзину</button>
     </div>
   </div>
 
@@ -140,7 +146,7 @@ footer {
     <div class="card-content">
       <div class="title">Сёмга целая 🇳🇴</div>
       <div class="price">25€ / кг</div>
-      <button onclick="order('Сёмга целая')">Заказать</button>
+      <button onclick="addToCart('Сёмга целая', 25)">Добавить в корзину</button>
     </div>
   </div>
 
@@ -149,7 +155,7 @@ footer {
     <div class="card-content">
       <div class="title">Филе сёмги</div>
       <div class="price">38€ / кг</div>
-      <button onclick="order('Сёмга филе')">Заказать</button>
+      <button onclick="addToCart('Сёмга филе', 38)">Добавить в корзину</button>
     </div>
   </div>
 
@@ -158,7 +164,7 @@ footer {
     <div class="card-content">
       <div class="title">Стейк сёмги</div>
       <div class="price">35€ / кг</div>
-      <button onclick="order('Стейк сёмги')">Заказать</button>
+      <button onclick="addToCart('Стейк сёмги', 35)">Добавить в корзину</button>
     </div>
   </div>
 </div>
@@ -172,7 +178,7 @@ footer {
       <div class="title">Икра форели</div>
       <div class="price">25€ / 200 г <span class="old-price">20€</span></div>
       <div class="price">30€ / 250 г <span class="old-price">25€</span></div>
-      <button onclick="order('Икра форели')">Заказать</button>
+      <button onclick="addToCart('Икра форели', 25)">Добавить в корзину</button>
     </div>
   </div>
 
@@ -181,7 +187,7 @@ footer {
     <div class="card-content">
       <div class="title">Икра кеты 🇳🇴</div>
       <div class="price">90€ / 500 г</div>
-      <button onclick="order('Икра кеты')">Заказать</button>
+      <button onclick="addToCart('Икра кеты', 90)">Добавить в корзину</button>
     </div>
   </div>
 </div>
@@ -194,7 +200,7 @@ footer {
     <div class="card-content">
       <div class="title">Яйца</div>
       <div class="price">4€ / 10 шт (мин. 20)</div>
-      <button onclick="order('Яйца')">Заказать</button>
+      <button onclick="addToCart('Яйца', 4)">Добавить в корзину</button>
     </div>
   </div>
 
@@ -203,7 +209,7 @@ footer {
     <div class="card-content">
       <div class="title">Мёд</div>
       <div class="price">20€ / кг</div>
-      <button onclick="order('Мёд')">Заказать</button>
+      <button onclick="addToCart('Мёд', 20)">Добавить в корзину</button>
     </div>
   </div>
 
@@ -212,9 +218,14 @@ footer {
     <div class="card-content">
       <div class="title">Яблочный бренди 45°</div>
       <div class="price">20€ / л</div>
-      <button onclick="order('Бренди')">Заказать</button>
+      <button onclick="addToCart('Бренди', 20)">Добавить в корзину</button>
     </div>
   </div>
+</div>
+
+<!-- КОРЗИНА -->
+<div id="cart">
+  <i>Корзина пуста</i>
 </div>
 
 <footer>
@@ -225,9 +236,47 @@ footer {
 let tg = window.Telegram.WebApp;
 tg.expand();
 
-function order(item) {
-  tg.sendData("Заказ: " + item);
-  alert("Ваш заказ отправлен. Мы свяжемся с вами.");
+let cart = [];
+
+function addToCart(item, price) {
+  cart.push({item, price});
+  updateCartUI();
+}
+
+function updateCartUI() {
+  let cartDiv = document.getElementById('cart');
+  if(!cartDiv) return;
+
+  cartDiv.innerHTML = '';
+  let total = 0;
+
+  cart.forEach((product, index) => {
+    total += product.price;
+    cartDiv.innerHTML += `
+      <div>${product.item} — ${product.price}€ 
+      <button onclick="removeFromCart(${index})">❌</button></div>
+    `;
+  });
+
+  if(cart.length > 0){
+    cartDiv.innerHTML += `<div><b>Итого: ${total}€</b></div>
+    <button onclick="confirmOrder()">Подтвердить заказ</button>`;
+  } else {
+    cartDiv.innerHTML = '<i>Корзина пуста</i>';
+  }
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
+function confirmOrder() {
+  let orderText = cart.map(p => `${p.item} — ${p.price}€`).join('\n');
+  tg.sendData(`Заказ от пользователя:\n${orderText}`);
+  alert('Заказ отправлен! Мы свяжемся с вами.');
+  cart = [];
+  updateCartUI();
 }
 </script>
 
