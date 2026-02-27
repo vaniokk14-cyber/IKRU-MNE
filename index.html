@@ -37,10 +37,13 @@ header p {
   text-align: center;
   padding: 15px 0;
   margin: 20px 0 10px;
-  background: #3b82f6;
-  color: white;
   border-radius: 10px;
+  color: white;
 }
+
+.category-fish { background: #3b82f6; }      /* голубой для рыбы */
+.category-caviar { background: #FF6B6B; }    /* коралловый для икры */
+.category-bakery { background: #34D399; }    /* зелёный для бакалеи */
 
 .container {
   padding: 0 15px 20px 15px;
@@ -57,7 +60,7 @@ header p {
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   transition: transform 0.2s ease;
   width: 100%;
-  max-width: 320px;
+  max-width: 640px;
 }
 
 .card:hover {
@@ -86,13 +89,6 @@ header p {
   font-weight: bold;
   color: #2563eb;
   margin-bottom: 10px;
-}
-
-.old-price {
-  font-size: 14px;
-  text-decoration: line-through;
-  opacity: 0.7;
-  margin-left: 5px;
 }
 
 button {
@@ -147,8 +143,10 @@ footer {
 <div id="catalog">
 
 <!-- РЫБА -->
-<div class="category-title">🐟 Рыба</div>
+<div class="category-title category-fish">🐟 Рыба</div>
 <div class="container">
+
+  <!-- Форель -->
   <div class="card">
     <img src="https://images.unsplash.com/photo-1604908177225-1f9c3fdbb5a6" alt="Форель">
     <div class="card-content">
@@ -159,8 +157,9 @@ footer {
     </div>
   </div>
 
+  <!-- Карп -->
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1602721004102-1b1a667ff3a2" alt="Карп">
+    <img src="https://images.unsplash.com/photo-1589927986089-35812388d1b6" alt="Карп">
     <div class="card-content">
       <div class="title">Карп</div>
       <div class="price">11€ / кг (1,3–4 кг)</div>
@@ -174,20 +173,38 @@ footer {
       <button onclick="addToCartOption('Карп', 11, document.getElementById('weight-karp').value, document.getElementById('clean-karp').checked)">Добавить в корзину</button>
     </div>
   </div>
-</div>
 
-<!-- ИКРА -->
-<div class="category-title">🥄 Икра</div>
-<div class="container">
+  <!-- Сёмга целая -->
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44" alt="Икра кеты">
+    <img src="https://images.unsplash.com/photo-1589927986089-1d0c3b5b0b9d" alt="Сёмга целая">
     <div class="card-content">
-      <div class="title">Икра кеты 🇳🇴</div>
-      <div class="price">90€ / 500 г</div>
-      <button onclick="addToCart('Икра кеты', 90)">Добавить в корзину</button>
+      <div class="title">Сёмга целая 🇳🇴</div>
+      <div class="price">25€ / кг (4–6 кг)</div>
+      <button onclick="addToCart('Сёмга целая', 25)">Добавить в корзину</button>
     </div>
   </div>
 
+  <!-- Сёмга филе -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1604908177225-2f9c3fdbb5b7" alt="Филе сёмги">
+    <div class="card-content">
+      <div class="title">Филе сёмги 🇳🇴</div>
+      <div class="price">38€ / кг (1,5–2,2 кг)</div>
+      <button onclick="addToCart('Филе сёмги', 38)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <!-- Стейк сёмги -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1617196038430-5bb3b3b8a1e8" alt="Стейк сёмги">
+    <div class="card-content">
+      <div class="title">Стейк сёмги 🇳🇴</div>
+      <div class="price">35€ / кг (250–350 г)</div>
+      <button onclick="addToCart('Стейк сёмги', 35)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <!-- Сёмга слабой соли -->
   <div class="card">
     <img src="https://images.unsplash.com/photo-1617196038430-5bb3b3b8a1e8" alt="Сёмга слабой соли">
     <div class="card-content">
@@ -204,7 +221,94 @@ footer {
       <button onclick="addToCartWithWeight('Сёмга слабой соли', 45, document.getElementById('weight-slab-sol').value)">Добавить в корзину</button>
     </div>
   </div>
-</div>
+
+  <!-- Сёмга заморозка -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1617196038430-6bb3b3b8b2c9" alt="Сёмга заморозка">
+    <div class="card-content">
+      <div class="title">Сёмга заморозка 🇳🇴</div>
+      <div class="price">32€ / кг</div>
+      <button onclick="addToCart('Сёмга заморозка', 32)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <!-- Тунец стейк -->
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1604908177225-1f9c3fdbb5a8" alt="Тунец стейк">
+    <div class="card-content">
+      <div class="title">Тунец стейк 🇪🇸</div>
+      <div class="price">35€ / кг</div>
+      <button onclick="addToCart('Тунец стейк', 35)">Добавить в корзину</button>
+    </div>
+  </div>
+
+</div> <!-- конец Рыба -->
+
+<!-- ИКРА -->
+<div class="category-title category-caviar">🥄 Икра</div>
+<div class="container">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44" alt="Икра кеты">
+    <div class="card-content">
+      <div class="title">Икра кеты 🇳🇴</div>
+      <div class="price">90€ / 500 г</div>
+      <button onclick="addToCart('Икра кеты', 90)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1604908177225-1f9c3fdbb5a9" alt="Икра форели">
+    <div class="card-content">
+      <div class="title">Икра форели</div>
+      <div class="price">25–30€ (200–250 г)</div>
+      <button onclick="addToCart('Икра форели', 25)">Добавить в корзину</button>
+    </div>
+  </div>
+
+</div> <!-- конец Икра -->
+
+<!-- БАКАЛЕЯ -->
+<div class="category-title category-bakery">🥚 Бакалея / Прочее</div>
+<div class="container">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1598514982421-1e1a5b0f5c2b" alt="Дикая зайчатина">
+    <div class="card-content">
+      <div class="title">Дикая зайчатина</div>
+      <div class="price">40€ / шт (~2 кг)</div>
+      <button onclick="addToCart('Дикая зайчатина', 40)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1589710754187-7c37ab67c8a1" alt="Яйца">
+    <div class="card-content">
+      <div class="title">Яйца</div>
+      <div class="price">4€ / 10 шт (мин. 20 шт)</div>
+      <button onclick="addToCart('Яйца', 4)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1589710754187-7c37ab67c8a2" alt="Мёд">
+    <div class="card-content">
+      <div class="title">Мёд</div>
+      <div class="price">20€ / кг</div>
+      <button onclick="addToCart('Мёд', 20)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1598514982421-1e1a5b0f5c2c" alt="Домашний яблочный бренди">
+    <div class="card-content">
+      <div class="title">Домашний яблочный бренди 45°</div>
+      <div class="price">20€ / л</div>
+      <button onclick="addToCart('Бренди', 20)">Добавить в корзину</button>
+    </div>
+  </div>
+
+</div> <!-- конец Бакалея -->
 
 <!-- Кнопка перехода к корзине -->
 <div style="text-align:center; margin:20px;">
@@ -213,7 +317,7 @@ footer {
 
 </div> <!-- конец каталога -->
 
-<!-- Страница корзины -->
+<!-- КОРЗИНА -->
 <div id="cart-page">
   <h2>Корзина</h2>
   <div id="cart-items"></div>
