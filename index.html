@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 <style>
 body {
   margin: 0;
@@ -74,6 +73,13 @@ header p {
   margin-bottom: 10px;
 }
 
+.old-price {
+  font-size: 16px;
+  text-decoration: line-through;
+  opacity: 0.7;
+  margin-left: 5px;
+}
+
 .description {
   font-size: 14px;
   opacity: 0.85;
@@ -109,67 +115,173 @@ footer {
 <body>
 
 <header>
-<h1>Premium Seafood Selection 🌊</h1>
-<p>Норвежское качество • Свежесть • Оплата наличными</p>
+<h1>IKRU MNE 🌊 Премиум морепродукты</h1>
+<p>Свежесть и качество • Оплата наличными при доставке</p>
 </header>
 
 <div class="container">
 
-<!-- 1 -->
+<!-- Икра форели -->
 <div class="card">
-<img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369" />
+<img src="ikra-foreli.jpg" />
 <div class="card-content">
-<div class="title">Сёмга охлажденная Норвегия 🇳🇴</div>
-<div class="price">25€ / кг</div>
+<div class="title">🥄 Икра форели, слабой соли</div>
+<div class="price">25€ / 200 г <span class="old-price">20€</span></div>
+<div class="price">30€ / 250 г <span class="old-price">25€</span></div>
 <div class="description">
-Вес: 4–6 кг<br>
-Свежая поставка<br>
-Импорт из Норвегии
+Премиальный деликатес IKRU MNE
 </div>
-<button onclick="order('Сёмга охлажденная Норвегия 25€ кг')">
-Заказать
-</button>
+<button onclick="order('Икра форели')">Заказать</button>
 </div>
 </div>
 
-<!-- 2 -->
+<!-- Икра кеты -->
 <div class="card">
-<img src="https://images.unsplash.com/photo-1604908177225-1f9c3fdbb5a6" />
+<img src="ikra-kety.jpg" />
 <div class="card-content">
-<div class="title">Икра кеты</div>
-<div class="price">90€ / 500г</div>
-<div class="description">
-Заморозка<br>
-Премиальное качество<br>
-Глубокий насыщенный вкус
-</div>
-<button onclick="order('Икра кеты 90€ 500г')">
-Заказать
-</button>
+<div class="title">🖤 Икра кеты Nordic Seafood 🇳🇴</div>
+<div class="price">90€ / 500 г</div>
+<div class="description">Премиальная зернистая икра<br>Идеально для праздничного стола</div>
+<button onclick="order('Икра кеты')">Заказать</button>
 </div>
 </div>
 
-<!-- 3 -->
+<!-- Форель -->
 <div class="card">
-<img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62" />
+<img src="forel.jpg" />
 <div class="card-content">
-<div class="title">Филе сёмги свежее Норвегия 🇳🇴</div>
-<div class="price">38€ / кг</div>
-<div class="description">
-Вес: 1,1–2 кг (1 шт)<br>
-Охлажденное филе<br>
-Без заморозки
+<div class="title">🐟 Форель (тушка)</div>
+<div class="price">13€ / кг (~19–35€ за шт.)</div>
+<div class="description">Вес: 1,5–2 кг<br>Свежая поставка</div>
+<button onclick="order('Форель тушка')">Заказать</button>
 </div>
-<button onclick="order('Филе сёмги 38€ кг')">
-Заказать
-</button>
+</div>
+
+<!-- Сёмга целая -->
+<div class="card">
+<img src="semga.jpg" />
+<div class="card-content">
+<div class="title">🐟 Сёмга 🇳🇴 свежая, целая тушка</div>
+<div class="price">25€ / кг (4–6 кг)</div>
+<div class="description">Премиум качество IKRU MNE</div>
+<button onclick="order('Сёмга целая')">Заказать</button>
+</div>
+</div>
+
+<!-- Сёмга филе -->
+<div class="card">
+<img src="file-semgi.jpg" />
+<div class="card-content">
+<div class="title">🐟 Сёмга 🇳🇴 филе без костей</div>
+<div class="price">38€ / кг (1,5–2,2 кг)</div>
+<div class="description">Свежая нарезка, премиум IKRU MNE</div>
+<button onclick="order('Сёмга филе')">Заказать</button>
+</div>
+</div>
+
+<!-- Стейк сёмги -->
+<div class="card">
+<img src="steik-semgi.jpg" />
+<div class="card-content">
+<div class="title">🐟 Стейк сёмги свежей 🇳🇴</div>
+<div class="price">35€ / кг (250–350 г)</div>
+<div class="description">Свежий стейк премиум класса</div>
+<button onclick="order('Стейк сёмги')">Заказать</button>
+</div>
+</div>
+
+<!-- Сёмга слабой соли -->
+<div class="card">
+<img src="semga-slab-soli.jpg" />
+<div class="card-content">
+<div class="title">🧂 Сёмга слабой соли</div>
+<div class="price">45€ / кг (от 200 г)</div>
+<div class="description">Нежная и ароматная</div>
+<button onclick="order('Сёмга слабой соли')">Заказать</button>
+</div>
+</div>
+
+<!-- Заморозка сёмги -->
+<div class="card">
+<img src="semga-zamorozka.jpg" />
+<div class="card-content">
+<div class="title">❄️ Сёмга 🇳🇴 заморозка, вакуум</div>
+<div class="price">32€ / кг</div>
+<div class="description">Сохраняет свежесть и вкус</div>
+<button onclick="order('Сёмга заморозка')">Заказать</button>
+</div>
+</div>
+
+<!-- Тунец -->
+<div class="card">
+<img src="tunez.jpg" />
+<div class="card-content">
+<div class="title">🐟 Тунец стейк 🇪🇸</div>
+<div class="price">35€ / кг</div>
+<div class="description">Отборные куски, свежий импорт</div>
+<button onclick="order('Тунец стейк')">Заказать</button>
+</div>
+</div>
+
+<!-- Карп -->
+<div class="card">
+<img src="karp.jpg" />
+<div class="card-content">
+<div class="title">🐟 Карп</div>
+<div class="price">от 11€ / кг</div>
+<div class="description">Свежая рыба на заказ</div>
+<button onclick="order('Карп')">Заказать</button>
+</div>
+</div>
+
+<!-- Дикая зайчатина -->
+<div class="card">
+<img src="zaichatina.jpg" />
+<div class="card-content">
+<div class="title">🐇 Дикая зайчатина</div>
+<div class="price">40€ / шт (~2 кг)</div>
+<div class="description">Натуральная, премиум IKRU MNE</div>
+<button onclick="order('Дикая зайчатина')">Заказать</button>
+</div>
+</div>
+
+<!-- Яйца -->
+<div class="card">
+<img src="eggs.jpg" />
+<div class="card-content">
+<div class="title">🥚 Яйца</div>
+<div class="price">4€ / 10 шт</div>
+<div class="description">Минимум 20 шт</div>
+<button onclick="order('Яйца')">Заказать</button>
+</div>
+</div>
+
+<!-- Мёд -->
+<div class="card">
+<img src="honey.jpg" />
+<div class="card-content">
+<div class="title">🍯 Мёд</div>
+<div class="price">20€ / кг</div>
+<div class="description">Натуральный домашний мёд</div>
+<button onclick="order('Мёд')">Заказать</button>
+</div>
+</div>
+
+<!-- Бренди -->
+<div class="card">
+<img src="brendy.jpg" />
+<div class="card-content">
+<div class="title">🍎 Домашний яблочный бренди 45°</div>
+<div class="price">20€ / л</div>
+<div class="description">Домашний напиток премиум IKRU MNE</div>
+<button onclick="order('Бренди')">Заказать</button>
 </div>
 </div>
 
 </div>
 
 <footer>
-Оплата наличными при получении • Свяжемся с вами для подтверждения заказа
+📞 Заказы принимаем заранее: +382 69 575 828 • IKRU MNE
 </footer>
 
 <script>
