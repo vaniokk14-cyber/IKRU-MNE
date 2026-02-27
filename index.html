@@ -29,11 +29,12 @@ header p {
   opacity: 0.9;
 }
 
-..container {
+.container {
   padding: 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* 2 карточки в ряд на телефоне */
   gap: 15px;
+  justify-items: center;
 }
 
 .card {
@@ -42,6 +43,8 @@ header p {
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.4);
   transition: transform 0.2s ease;
+  width: 100%;
+  max-width: 180px; /* ограничиваем ширину карточки для 2 колонок */
 }
 
 .card:hover {
@@ -50,35 +53,36 @@ header p {
 
 .card img {
   width: 100%;
-  height: 120px; /* делаем одинаковый размер фото */
+  height: 180px; /* увеличиваем фото для крупного плана */
   object-fit: cover;
 }
 
 .card-content {
   padding: 10px;
+  text-align: center;
 }
 
 .title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .price {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #38bdf8;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 button {
   width: 100%;
   background: linear-gradient(90deg, #0ea5e9, #2563eb);
   border: none;
-  padding: 8px;
+  padding: 10px;
   border-radius: 6px;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -177,16 +181,39 @@ footer {
 
 <!-- Икра форели -->
 <div class="card">
-<img src="ikra-foreli.jpg" />
-<div class="card-content">
-<div class="title">🥄 Икра форели, слабой соли</div>
-<div class="price">25€ / 200 г <span class="old-price">20€</span></div>
-<div class="price">30€ / 250 г <span class="old-price">25€</span></div>
-<div class="description">
-Премиальный деликатес IKRU MNE
+  <img src="ikra-foreli.jpg" />
+  <div class="card-content">
+    <div class="title">🥄 Икра форели</div>
+    <div class="price">25€ / 200 г</div>
+    <button onclick="order('Икра форели')">Заказать</button>
+  </div>
 </div>
-<button onclick="order('Икра форели')">Заказать</button>
+
+<div class="card">
+  <img src="ikra-kety.jpg" />
+  <div class="card-content">
+    <div class="title">Икра кеты</div>
+    <div class="price">90€ / 500 г</div>
+    <button onclick="order('Икра кеты')">Заказать</button>
+  </div>
 </div>
+
+<div class="card">
+  <img src="semga.jpg" />
+  <div class="card-content">
+    <div class="title">Сёмга целая</div>
+    <div class="price">25€ / кг</div>
+    <button onclick="order('Сёмга целая')">Заказать</button>
+  </div>
+</div>
+
+<div class="card">
+  <img src="file-semgi.jpg" />
+  <div class="card-content">
+    <div class="title">Филе сёмги</div>
+    <div class="price">38€ / кг</div>
+    <button onclick="order('Сёмга филе')">Заказать</button>
+  </div>
 </div>
 
 <!-- Икра кеты -->
