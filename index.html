@@ -19,28 +19,40 @@ header {
 
 header h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 header p {
   margin: 5px 0 0;
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.9;
 }
 
-.category-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 20px 0 10px;
-  padding-left: 15px;
-  color: #38bdf8;
+/* Категории сверху */
+.categories {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
 }
 
+.category {
+  flex: 1;
+  margin: 0 5px;
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+/* Сетка товаров */
 .container {
   padding: 0 15px 20px 15px;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 карточки в ряд */
-  gap: 15px;
+  gap: 20px;
   justify-items: center;
 }
 
@@ -48,10 +60,10 @@ header p {
   background: #1e293b;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   transition: transform 0.2s ease;
   width: 100%;
-  max-width: 180px;
+  max-width: 320px; /* увеличили ширину */
 }
 
 .card:hover {
@@ -60,30 +72,30 @@ header p {
 
 .card img {
   width: 100%;
-  height: 180px; /* крупный вид */
+  height: 320px; /* увеличили фото */
   object-fit: cover;
 }
 
 .card-content {
-  padding: 10px;
+  padding: 15px;
   text-align: center;
 }
 
 .title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .price {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   color: #38bdf8;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .old-price {
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: line-through;
   opacity: 0.7;
   margin-left: 5px;
@@ -93,10 +105,10 @@ button {
   width: 100%;
   background: linear-gradient(90deg, #0ea5e9, #2563eb);
   border: none;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -105,19 +117,30 @@ button:hover {
   opacity: 0.85;
 }
 
+/* Корзина */
 #cart {
-  padding: 15px;
+  padding: 20px;
   background: #111827;
   color: white;
-  margin: 10px 15px;
-  border-radius: 10px;
+  margin: 15px;
+  border-radius: 12px;
 }
 
+#comment {
+  width: 95%;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* Футер */
 footer {
   text-align: center;
   padding: 20px;
-  font-size: 13px;
-  opacity: 0.6;
+  font-size: 14px;
+  opacity: 0.7;
 }
 </style>
 </head>
@@ -129,8 +152,14 @@ footer {
 <p>Свежесть и качество • Оплата наличными при доставке</p>
 </header>
 
+<!-- Категории -->
+<div class="categories">
+  <div class="category">Рыба</div>
+  <div class="category">Икра</div>
+  <div class="category">Бакалея</div>
+</div>
+
 <!-- РЫБНЫЙ РЯД -->
-<div class="category-title">🐟 Рыба</div>
 <div class="container">
   <div class="card">
     <img src="forel.jpg" />
@@ -170,7 +199,6 @@ footer {
 </div>
 
 <!-- ИКРА -->
-<div class="category-title">🥄 Икра</div>
 <div class="container">
   <div class="card">
     <img src="ikra-foreli.jpg" />
@@ -193,7 +221,6 @@ footer {
 </div>
 
 <!-- БАКАЛЕЯ / ДЕЛИКАТЕСЫ -->
-<div class="category-title">🥚 Бакалея и деликатесы</div>
 <div class="container">
   <div class="card">
     <img src="eggs.jpg" />
@@ -223,7 +250,10 @@ footer {
   </div>
 </div>
 
-<!-- КОРЗИНА -->
+<!-- Комментарий клиента -->
+<textarea id="comment" placeholder="Ваши пожелания или комментарии к заказу"></textarea>
+
+<!-- Корзина -->
 <div id="cart">
   <i>Корзина пуста</i>
 </div>
@@ -272,10 +302,13 @@ function removeFromCart(index) {
 }
 
 function confirmOrder() {
+  let comment = document.getElementById('comment').value;
   let orderText = cart.map(p => `${p.item} — ${p.price}€`).join('\n');
+  if(comment) orderText += `\nПожелания клиента: ${comment}`;
   tg.sendData(`Заказ от пользователя:\n${orderText}`);
   alert('Заказ отправлен! Мы свяжемся с вами.');
   cart = [];
+  document.getElementById('comment').value = '';
   updateCartUI();
 }
 </script>
