@@ -29,10 +29,19 @@ header p {
   opacity: 0.9;
 }
 
+.category-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 0 10px;
+  text-align: left;
+  padding-left: 15px;
+  color: #38bdf8;
+}
+
 .container {
-  padding: 15px;
+  padding: 0 15px 20px 15px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* 2 карточки в ряд на телефоне */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 15px;
   justify-items: center;
 }
@@ -44,7 +53,7 @@ header p {
   box-shadow: 0 6px 20px rgba(0,0,0,0.4);
   transition: transform 0.2s ease;
   width: 100%;
-  max-width: 180px; /* ограничиваем ширину карточки для 2 колонок */
+  max-width: 180px;
 }
 
 .card:hover {
@@ -53,7 +62,7 @@ header p {
 
 .card img {
   width: 100%;
-  height: 180px; /* увеличиваем фото для крупного плана */
+  height: 180px;
   object-fit: cover;
 }
 
@@ -75,6 +84,13 @@ header p {
   margin-bottom: 8px;
 }
 
+.old-price {
+  font-size: 14px;
+  text-decoration: line-through;
+  opacity: 0.7;
+  margin-left: 5px;
+}
+
 button {
   width: 100%;
   background: linear-gradient(90deg, #0ea5e9, #2563eb);
@@ -83,76 +99,6 @@ button {
   border-radius: 6px;
   color: white;
   font-size: 14px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  opacity: 0.85;
-}
-  
-}
-}
-
-.card {
-  background: #1e293b;
-  border-radius: 16px;
-  width: 320px;
-  margin-bottom: 25px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 18px;
-}
-
-.title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #38bdf8;
-  margin-bottom: 10px;
-}
-
-.old-price {
-  font-size: 16px;
-  text-decoration: line-through;
-  opacity: 0.7;
-  margin-left: 5px;
-}
-
-.description {
-  font-size: 14px;
-  opacity: 0.85;
-  margin-bottom: 15px;
-  line-height: 1.4;
-}
-
-button {
-  width: 100%;
-  background: linear-gradient(90deg, #0ea5e9, #2563eb);
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  color: white;
-  font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -177,192 +123,102 @@ footer {
 <p>Свежесть и качество • Оплата наличными при доставке</p>
 </header>
 
+<!-- РЫБНЫЙ РЯД -->
+<div class="category-title">🐟 Рыба</div>
 <div class="container">
+  <div class="card">
+    <img src="forel.jpg" />
+    <div class="card-content">
+      <div class="title">Форель (тушка)</div>
+      <div class="price">13€ / кг (~19–35€ за шт.)</div>
+      <button onclick="order('Форель тушка')">Заказать</button>
+    </div>
+  </div>
 
-<!-- Икра форели -->
-<div class="card">
-  <img src="ikra-foreli.jpg" />
-  <div class="card-content">
-    <div class="title">🥄 Икра форели</div>
-    <div class="price">25€ / 200 г</div>
-    <button onclick="order('Икра форели')">Заказать</button>
+  <div class="card">
+    <img src="semga.jpg" />
+    <div class="card-content">
+      <div class="title">Сёмга целая 🇳🇴</div>
+      <div class="price">25€ / кг</div>
+      <button onclick="order('Сёмга целая')">Заказать</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="file-semgi.jpg" />
+    <div class="card-content">
+      <div class="title">Филе сёмги</div>
+      <div class="price">38€ / кг</div>
+      <button onclick="order('Сёмга филе')">Заказать</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="steik-semgi.jpg" />
+    <div class="card-content">
+      <div class="title">Стейк сёмги</div>
+      <div class="price">35€ / кг</div>
+      <button onclick="order('Стейк сёмги')">Заказать</button>
+    </div>
   </div>
 </div>
 
-<div class="card">
-  <img src="ikra-kety.jpg" />
-  <div class="card-content">
-    <div class="title">Икра кеты</div>
-    <div class="price">90€ / 500 г</div>
-    <button onclick="order('Икра кеты')">Заказать</button>
+<!-- ИКРА -->
+<div class="category-title">🥄 Икра</div>
+<div class="container">
+  <div class="card">
+    <img src="ikra-foreli.jpg" />
+    <div class="card-content">
+      <div class="title">Икра форели</div>
+      <div class="price">25€ / 200 г <span class="old-price">20€</span></div>
+      <div class="price">30€ / 250 г <span class="old-price">25€</span></div>
+      <button onclick="order('Икра форели')">Заказать</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="ikra-kety.jpg" />
+    <div class="card-content">
+      <div class="title">Икра кеты 🇳🇴</div>
+      <div class="price">90€ / 500 г</div>
+      <button onclick="order('Икра кеты')">Заказать</button>
+    </div>
   </div>
 </div>
 
-<div class="card">
-  <img src="semga.jpg" />
-  <div class="card-content">
-    <div class="title">Сёмга целая</div>
-    <div class="price">25€ / кг</div>
-    <button onclick="order('Сёмга целая')">Заказать</button>
+<!-- БАКАЛЕЯ / ДЕЛИКАТЕСЫ -->
+<div class="category-title">🥚 Бакалея и деликатесы</div>
+<div class="container">
+  <div class="card">
+    <img src="eggs.jpg" />
+    <div class="card-content">
+      <div class="title">Яйца</div>
+      <div class="price">4€ / 10 шт (мин. 20)</div>
+      <button onclick="order('Яйца')">Заказать</button>
+    </div>
   </div>
-</div>
 
-<div class="card">
-  <img src="file-semgi.jpg" />
-  <div class="card-content">
-    <div class="title">Филе сёмги</div>
-    <div class="price">38€ / кг</div>
-    <button onclick="order('Сёмга филе')">Заказать</button>
+  <div class="card">
+    <img src="honey.jpg" />
+    <div class="card-content">
+      <div class="title">Мёд</div>
+      <div class="price">20€ / кг</div>
+      <button onclick="order('Мёд')">Заказать</button>
+    </div>
   </div>
-</div>
 
-<!-- Икра кеты -->
-<div class="card">
-<img src="ikra-kety.jpg" />
-<div class="card-content">
-<div class="title">🖤 Икра кеты Nordic Seafood 🇳🇴</div>
-<div class="price">90€ / 500 г</div>
-<div class="description">Премиальная зернистая икра<br>Идеально для праздничного стола</div>
-<button onclick="order('Икра кеты')">Заказать</button>
-</div>
-</div>
-
-<!-- Форель -->
-<div class="card">
-<img src="forel.jpg" />
-<div class="card-content">
-<div class="title">🐟 Форель (тушка)</div>
-<div class="price">13€ / кг (~19–35€ за шт.)</div>
-<div class="description">Вес: 1,5–2 кг<br>Свежая поставка</div>
-<button onclick="order('Форель тушка')">Заказать</button>
-</div>
-</div>
-
-<!-- Сёмга целая -->
-<div class="card">
-<img src="semga.jpg" />
-<div class="card-content">
-<div class="title">🐟 Сёмга 🇳🇴 свежая, целая тушка</div>
-<div class="price">25€ / кг (4–6 кг)</div>
-<div class="description">Премиум качество IKRU MNE</div>
-<button onclick="order('Сёмга целая')">Заказать</button>
-</div>
-</div>
-
-<!-- Сёмга филе -->
-<div class="card">
-<img src="file-semgi.jpg" />
-<div class="card-content">
-<div class="title">🐟 Сёмга 🇳🇴 филе без костей</div>
-<div class="price">38€ / кг (1,5–2,2 кг)</div>
-<div class="description">Свежая нарезка, премиум IKRU MNE</div>
-<button onclick="order('Сёмга филе')">Заказать</button>
-</div>
-</div>
-
-<!-- Стейк сёмги -->
-<div class="card">
-<img src="steik-semgi.jpg" />
-<div class="card-content">
-<div class="title">🐟 Стейк сёмги свежей 🇳🇴</div>
-<div class="price">35€ / кг (250–350 г)</div>
-<div class="description">Свежий стейк премиум класса</div>
-<button onclick="order('Стейк сёмги')">Заказать</button>
-</div>
-</div>
-
-<!-- Сёмга слабой соли -->
-<div class="card">
-<img src="semga-slab-soli.jpg" />
-<div class="card-content">
-<div class="title">🧂 Сёмга слабой соли</div>
-<div class="price">45€ / кг (от 200 г)</div>
-<div class="description">Нежная и ароматная</div>
-<button onclick="order('Сёмга слабой соли')">Заказать</button>
-</div>
-</div>
-
-<!-- Заморозка сёмги -->
-<div class="card">
-<img src="semga-zamorozka.jpg" />
-<div class="card-content">
-<div class="title">❄️ Сёмга 🇳🇴 заморозка, вакуум</div>
-<div class="price">32€ / кг</div>
-<div class="description">Сохраняет свежесть и вкус</div>
-<button onclick="order('Сёмга заморозка')">Заказать</button>
-</div>
-</div>
-
-<!-- Тунец -->
-<div class="card">
-<img src="tunez.jpg" />
-<div class="card-content">
-<div class="title">🐟 Тунец стейк 🇪🇸</div>
-<div class="price">35€ / кг</div>
-<div class="description">Отборные куски, свежий импорт</div>
-<button onclick="order('Тунец стейк')">Заказать</button>
-</div>
-</div>
-
-<!-- Карп -->
-<div class="card">
-<img src="karp.jpg" />
-<div class="card-content">
-<div class="title">🐟 Карп</div>
-<div class="price">от 11€ / кг</div>
-<div class="description">Свежая рыба на заказ</div>
-<button onclick="order('Карп')">Заказать</button>
-</div>
-</div>
-
-<!-- Дикая зайчатина -->
-<div class="card">
-<img src="zaichatina.jpg" />
-<div class="card-content">
-<div class="title">🐇 Дикая зайчатина</div>
-<div class="price">40€ / шт (~2 кг)</div>
-<div class="description">Натуральная, премиум IKRU MNE</div>
-<button onclick="order('Дикая зайчатина')">Заказать</button>
-</div>
-</div>
-
-<!-- Яйца -->
-<div class="card">
-<img src="eggs.jpg" />
-<div class="card-content">
-<div class="title">🥚 Яйца</div>
-<div class="price">4€ / 10 шт</div>
-<div class="description">Минимум 20 шт</div>
-<button onclick="order('Яйца')">Заказать</button>
-</div>
-</div>
-
-<!-- Мёд -->
-<div class="card">
-<img src="honey.jpg" />
-<div class="card-content">
-<div class="title">🍯 Мёд</div>
-<div class="price">20€ / кг</div>
-<div class="description">Натуральный домашний мёд</div>
-<button onclick="order('Мёд')">Заказать</button>
-</div>
-</div>
-
-<!-- Бренди -->
-<div class="card">
-<img src="brendy.jpg" />
-<div class="card-content">
-<div class="title">🍎 Домашний яблочный бренди 45°</div>
-<div class="price">20€ / л</div>
-<div class="description">Домашний напиток премиум IKRU MNE</div>
-<button onclick="order('Бренди')">Заказать</button>
-</div>
-</div>
-
+  <div class="card">
+    <img src="brendy.jpg" />
+    <div class="card-content">
+      <div class="title">Яблочный бренди 45°</div>
+      <div class="price">20€ / л</div>
+      <button onclick="order('Бренди')">Заказать</button>
+    </div>
+  </div>
 </div>
 
 <footer>
-📞 Заказы принимаем заранее: +382 69 575 828 • IKRU MNE
+📞 Заказы заранее: +382 69 575 828 • IKRU MNE
 </footer>
 
 <script>
