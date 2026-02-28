@@ -64,7 +64,7 @@ header .cart-icon {
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   width: 100%;
-  max-width: 400px;
+  max-width: 640px;
   text-align: center;
   padding: 20px;
 }
@@ -94,7 +94,7 @@ header .cart-icon {
   margin-bottom: 15px;
 }
 
-select {
+select, input[type=checkbox] {
   font-size: 28px;
   padding: 8px;
   margin: 10px 0;
@@ -155,8 +155,7 @@ footer {
 
 <div id="catalog">
 
-<!-- Категории и товары будут здесь -->
-<!-- Пример одной категории -->
+<!-- ИКРА -->
 <div class="category-title category-caviar">🥄 Икра</div>
 <div class="container">
   <div class="card">
@@ -172,9 +171,158 @@ footer {
       <button onclick="addToCartOption('Икра форели', 125, document.getElementById('weight-caviar').value)">Добавить в корзину</button>
     </div>
   </div>
-  <!-- Добавь остальные товары по аналогии -->
+
+  <div class="card">
+    <img src="placeholder.jpg" alt="Икра кеты">
+    <div class="card-content">
+      <div class="title">Икра кеты Nordic Seafood 🇳🇴</div>
+      <div class="price">500 г — 90€</div>
+      <button onclick="addToCart('Икра кеты', 90)">Добавить в корзину</button>
+    </div>
+  </div>
 </div>
 
+<!-- РЫБА -->
+<div class="category-title category-fish">🐟 Рыба</div>
+<div class="container">
+  <!-- Форель -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Форель">
+    <div class="card-content">
+      <div class="title">Форель</div>
+      <div class="price">13€/кг (1,5–2 кг)</div>
+      <label><input type="checkbox" id="clean-forel" /> Очистить</label>
+      <button onclick="addToCartOption('Форель', 13, 2, document.getElementById('clean-forel').checked)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Карп -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Карп">
+    <div class="card-content">
+      <div class="title">Карп</div>
+      <div class="price">от 11€/кг (1,3–4 кг)</div>
+      <label for="weight-karp">Выберите вес:</label>
+      <select id="weight-karp">
+        <option value="1.5">1–2 кг</option>
+        <option value="2.5">2–3 кг</option>
+        <option value="3.5">3+ кг</option>
+      </select>
+      <label><input type="checkbox" id="clean-karp" /> Очистить</label>
+      <button onclick="addToCartOption('Карп', 11, document.getElementById('weight-karp').value, document.getElementById('clean-karp').checked)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Сёмга целая -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Сёмга целая">
+    <div class="card-content">
+      <div class="title">Сёмга 🇳🇴 целая</div>
+      <div class="price">25€/кг (4–6 кг)</div>
+      <button onclick="addToCart('Сёмга целая', 25)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Сёмга филе -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Сёмга филе">
+    <div class="card-content">
+      <div class="title">Сёмга 🇳🇴 филе без костей</div>
+      <div class="price">38€/кг (1,5–2,2 кг)</div>
+      <label for="weight-salmon">Выберите вес:</label>
+      <select id="weight-salmon">
+        <option value="1.5">1,5–2,2 кг</option>
+      </select>
+      <button onclick="addToCartOption('Сёмга филе', 38, document.getElementById('weight-salmon').value)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Слабой соли -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Сёмга слабой соли">
+    <div class="card-content">
+      <div class="title">Сёмга слабой соли</div>
+      <div class="price">45€/кг (200–600 г)</div>
+      <label for="weight-salmon-salt">Выберите вес:</label>
+      <select id="weight-salmon-salt">
+        <option value="0.2">200 г</option>
+        <option value="0.3">300 г</option>
+        <option value="0.4">400 г</option>
+        <option value="0.5">500 г</option>
+        <option value="0.6">600 г</option>
+      </select>
+      <button onclick="addToCartOption('Сёмга слабой соли', 45, document.getElementById('weight-salmon-salt').value)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Сёмга заморозка -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Сёмга заморозка">
+    <div class="card-content">
+      <div class="title">Сёмга заморозка</div>
+      <div class="price">32€/кг (1,1–1,5 кг)</div>
+      <button onclick="addToCart('Сёмга заморозка', 32)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Стейк сёмги -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Стейк сёмги">
+    <div class="card-content">
+      <div class="title">Стейк сёмги</div>
+      <div class="price">35€/кг (250–350 г)</div>
+      <label for="weight-steak">Выберите вес:</label>
+      <select id="weight-steak">
+        <option value="0.25">250 г</option>
+        <option value="0.3">300 г</option>
+        <option value="0.35">350 г</option>
+      </select>
+      <button onclick="addToCartOption('Стейк сёмги', 35, document.getElementById('weight-steak').value)">Добавить в корзину</button>
+    </div>
+  </div>
+  <!-- Тунец стейк -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Тунец стейк">
+    <div class="card-content">
+      <div class="title">Тунец стейк 🇪🇸</div>
+      <div class="price">35€/кг (от 300 г)</div>
+      <label for="weight-tuna">Выберите вес:</label>
+      <select id="weight-tuna">
+        <option value="0.3">300 г</option>
+        <option value="0.35">350 г</option>
+        <option value="0.4">400 г</option>
+        <option value="0.5">500 г</option>
+      </select>
+      <button onclick="addToCartOption('Тунец стейк', 35, document.getElementById('weight-tuna').value)">Добавить в корзину</button>
+    </div>
+  </div>
+</div>
+
+<!-- БАКАЛЕЯ -->
+<div class="category-title category-bakery">🥚 Бакалея</div>
+<div class="container">
+  <div class="card">
+    <img src="placeholder.jpg" alt="Яйца">
+    <div class="card-content">
+      <div class="title">Яйца</div>
+      <div class="price">4€ / 10 шт (мин. 20 шт)</div>
+      <button onclick="addToCart('Яйца', 4)">Добавить в корзину</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="placeholder.jpg" alt="Мёд">
+    <div class="card-content">
+      <div class="title">Мёд</div>
+      <div class="price">20€/кг</div>
+      <button onclick="addToCart('Мёд', 20)">Добавить в корзину</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="placeholder.jpg" alt="Бренди">
+    <div class="card-content">
+      <div class="title">Домашний яблочный бренди 45°</div>
+      <div class="price">20€/л</div>
+      <button onclick="addToCart('Бренди', 20)">Добавить в корзину</button>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; margin:20px;">
+  <button onclick="goToCartPage()">Перейти к корзине</button>
 </div>
 
 <!-- Корзина -->
