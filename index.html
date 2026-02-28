@@ -377,14 +377,18 @@ function goBackToCatalog(){
 
 function updateCartUI(){
   let cartDiv = document.getElementById('cart-items');
-  cartDiv.innerHTML='';
+  let totalDiv = document.getElementById('total');
+  cartDiv.innerHTML = '';
   let total = 0;
   cart.forEach((product,index)=>{
     total += parseFloat(product.price);
-    cartDiv.innerHTML += `<div>${product.item} — ${product.weight || ''} ${product.option || ''} — ${product.price}€ 
-      <button class="cart-btn" onclick="removeFromCart(${index})">❌</button></div>`;
+    cartDiv.innerHTML += `
+      <div>
+        ${product.item} ${product.weight ? '— ' + product.weight + ' кг' : ''} ${product.option || ''} — ${product.price}€
+        <button class="cart-btn" onclick="removeFromCart(${index})">❌</button>
+      </div>`;
   });
-  cartDiv.innerHTML += `<div style="font-size:28px;"><b>Итого: ${total.toFixed(2)}€</b></div>`;
+  totalDiv.innerHTML = `Итого: ${total.toFixed(2)}€`;
 }
 
 function removeFromCart(index){
@@ -396,17 +400,18 @@ function confirmOrder(){
   let comment = document.getElementById('comment').value;
   let phone = document.getElementById('phone').value;
   let address = document.getElementById('address').value;
-  let orderText = cart.map(p=>`${p.item} — ${p.weight || ''} ${p.option || ''} — ${p.price}€`).join('\n');
+  let orderText = cart.map(p=>`${p.item} ${p.weight ? '— ' + p.weight + ' кг' : ''} ${p.option || ''} — ${p.price}€`).join('\n');
   if(comment) orderText += `\nКомментарий: ${comment}`;
   if(phone) orderText += `\nТелефон: ${phone}`;
   if(address) orderText += `\nАдрес: ${address}`;
   tg.sendData(`Заказ от пользователя:\n${orderText}`);
   alert('Заказ отправлен! Мы свяжемся с вами.');
-  cart=[];
+  cart = [];
   document.getElementById('comment').value='';
   document.getElementById('phone').value='+38269575828';
   document.getElementById('address').value='';
   goBackToCatalog();
+}
 }
 </script>
 </body>
