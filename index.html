@@ -29,7 +29,15 @@ button:hover { opacity:0.85; }
 #comment,#phone,#address{width:95%;margin:10px auto;padding:18px;font-size:28px;border-radius:12px;border:1px solid #cbd5e1;display:block;}
 #total{font-size:36px;font-weight:bold;margin:20px 0;text-align:center;}
 footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
-</style>
+</style> .salmon-img {
+  width: 100%;          /* подгонка по ширине карточки */
+  max-width: 640px;     /* максимально крупно */
+  height: auto;         /* сохраняем пропорции */
+  transform: rotate(90deg); /* поворот вправо */
+  object-fit: cover;    /* картинка не искажается */
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
 </head>
 <body>
 
@@ -88,20 +96,21 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
     <img src="IMG_0064.jpeg" alt="Сёмга целая" style="transform: rotate(-90deg); height: 260px; object-fit: contain;">
   </div>
 
+<div class="card">
+  <img src="IMG_0064.jpeg" alt="Сёмга целая" class="salmon-img">
   <div class="card-content">
     <div class="title">Сёмга 🇳🇴 целая тушка</div>
-    <div class="price">4–6 кг — 25 €/кг</div>
+    <div class="price">4–6 кг — 25 €/кг</div>
 
     <select id="weight-salmon-whole">
-      <option value="4">4 кг</option>
-      <option value="5">5 кг</option>
+      <option value="4">4 кг</option>
+      <option value="5">5 кг</option>
     </select>
 
-    <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">
+    <button onclick="addToCartOption('Сёмга целая', 25, document.getElementById('weight-salmon-whole').value)">
       Добавить в корзину
     </button>
   </div>
-
 </div>
 
   <div class="card">
