@@ -82,19 +82,27 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
     </div>
   </div>
 
-  <div class="card">
-    <img src="IMG_0064.jpeg" transform: rotate(-90deg);
-    transform-origin: center; alt="Сёмга целая">
-    <div class="card-content">
-      <div class="title">Сёмга 🇳🇴 целая тушка</div>
-      <div class="price">4–6 кг — 25 €/кг</div>
-      <select id="weight-salmon-whole">
-        <option value="4">4 кг</option>
-        <option value="5">5 кг</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">Добавить в корзину</button>
-    </div>
+<div class="card">
+
+  <div class="image-wrapper">
+    <img src="IMG_0064.jpeg" alt="Сёмга целая">
   </div>
+
+  <div class="card-content">
+    <div class="title">Сёмга 🇳🇴 целая тушка</div>
+    <div class="price">4–6 кг — 25 €/кг</div>
+
+    <select id="weight-salmon-whole">
+      <option value="4">4 кг</option>
+      <option value="5">5 кг</option>
+    </select>
+
+    <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">
+      Добавить в корзину
+    </button>
+  </div>
+
+</div>
 
   <div class="card">
     <img src="placeholder.jpg" alt="Сёмга филе">
