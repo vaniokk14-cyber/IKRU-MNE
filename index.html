@@ -8,13 +8,16 @@ body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; background:#f0f5f9;
 header { position:relative; background: linear-gradient(90deg,#1e3a8a,#3b82f6,#f59e0b); padding:40px 15px; text-align:center; color:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px;}
 header h1 { margin:0; font-size:64px; font-weight:900; }
 header .cart-icon { position:absolute; top:20px; right:20px; font-size:48px; color:#f59e0b; cursor:pointer; }
+
 .category-title { font-size:56px; font-weight:bold; text-align:center; padding:15px 0; margin:20px 0 10px; border-radius:10px; color:white; }
 .category-fish { background:#2563eb; }     
 .category-caviar { background:#FF6B6B; }  
 .category-bakery { background:#fbbf24; }  
+.category-seafood { background:#10b981; } /* новая категория морепродукты */
+
 .container { padding:0 15px 20px 15px; display:grid; grid-template-columns:repeat(2,1fr); gap:25px; justify-items:center; }
 .card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.15); width:100%; max-width:640px; text-align:center; padding:20px; }
-.card img { width:100%; height:300px; object-fit:cover; border-radius:12px; margin-bottom:15px; }
+.card img { width:100%; height:300px; object-fit:cover; border-radius:12px; margin-bottom:15px; background:white; } /* белый фон */
 .card-content { padding:10px; }
 .title { font-size:48px; font-weight:800; margin-bottom:10px; }
 .price { font-size:40px; font-weight:bold; color:#2563eb; margin-bottom:15px; }
@@ -29,15 +32,7 @@ button:hover { opacity:0.85; }
 #comment,#phone,#address{width:95%;margin:10px auto;padding:18px;font-size:28px;border-radius:12px;border:1px solid #cbd5e1;display:block;}
 #total{font-size:36px;font-weight:bold;margin:20px 0;text-align:center;}
 footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
-</style> .salmon-img {
-  width: 100%;          /* подгонка по ширине карточки */
-  max-width: 640px;     /* максимально крупно */
-  height: auto;         /* сохраняем пропорции */
-  transform: rotate(90deg); /* поворот вправо */
-  object-fit: cover;    /* картинка не искажается */
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
+</style>
 </head>
 <body>
 
@@ -47,6 +42,7 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
 </header>
 
 <div id="catalog">
+
 <!-- Категория Икра -->
 <div class="category-title category-caviar">🥄 Икра</div>
 <div class="container">
@@ -90,28 +86,18 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
     </div>
   </div>
 
-<div class="card">
-
-  <div class="image-wrapper">
-    <img src="IMG_0064.jpeg" alt="Сёмга целая" style="transform: rotate(-90deg); height: 260px; object-fit: contain;">
+  <div class="card">
+    <img src="IMG_0064.jpeg" alt="Сёмга целая">
+    <div class="card-content">
+      <div class="title">Сёмга 🇳🇴 целая тушка</div>
+      <div class="price">4–6 кг — 25 €/кг</div>
+      <select id="weight-salmon-whole">
+        <option value="4">4 кг</option>
+        <option value="5">5 кг</option>
+      </select>
+      <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">Добавить в корзину</button>
+    </div>
   </div>
-
-<div class="card">
-  <img src="IMG_0064.jpeg" alt="Сёмга целая" class="salmon-img">
-  <div class="card-content">
-    <div class="title">Сёмга 🇳🇴 целая тушка</div>
-    <div class="price">4–6 кг — 25 €/кг</div>
-
-    <select id="weight-salmon-whole">
-      <option value="4">4 кг</option>
-      <option value="5">5 кг</option>
-    </select>
-
-    <button onclick="addToCartOption('Сёмга целая', 25, document.getElementById('weight-salmon-whole').value)">
-      Добавить в корзину
-    </button>
-  </div>
-</div>
 
   <div class="card">
     <img src="placeholder.jpg" alt="Сёмга филе">
@@ -125,63 +111,44 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
       <button onclick="addToCartOption('Сёмга филе',38,document.getElementById('weight-salmon-fillet').value)">Добавить в корзину</button>
     </div>
   </div>
+</div>
 
+<!-- Категория Морепродукты -->
+<div class="category-title category-seafood">🦐 Морепродукты</div>
+<div class="container">
   <div class="card">
-    <img src="placeholder.jpg" alt="Стейк сёмги">
+    <img src="https://vitofish.me/wp-content/uploads/2023/07/shrimps.jpg" alt="Креветки">
     <div class="card-content">
-      <div class="title">Стейк сёмги</div>
-      <div class="price">250–350 г — 35 €/кг</div>
-      <select id="weight-salmon-steak">
-        <option value="0.25">250 г</option>
-        <option value="0.3">300 г</option>
-        <option value="0.35">350 г</option>
-      </select>
-      <button onclick="addToCartOption('Стейк сёмги',35,document.getElementById('weight-salmon-steak').value)">Добавить в корзину</button>
+      <div class="title">Креветки 🦐</div>
+      <div class="price">500 г — 18€</div>
+      <button onclick="addToCart('Креветки',18)">Добавить в корзину</button>
     </div>
   </div>
 
   <div class="card">
-    <img src="placeholder.jpg" alt="Сёмга слабой соли">
+    <img src="https://vitofish.me/wp-content/uploads/2023/07/octopus.jpg" alt="Осьминог">
     <div class="card-content">
-      <div class="title">Сёмга слабой соли</div>
-      <div class="price">200–600 г — 45 €/кг</div>
-      <select id="weight-salmon-salt">
-        <option value="0.2">200 г</option>
-        <option value="0.3">300 г</option>
-        <option value="0.4">400 г</option>
-        <option value="0.5">500 г</option>
-        <option value="0.6">600 г</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга слабой соли',45,document.getElementById('weight-salmon-salt').value)">Добавить в корзину</button>
+      <div class="title">Осьминог 🐙</div>
+      <div class="price">1 кг — 35€</div>
+      <button onclick="addToCart('Осьминог',35)">Добавить в корзину</button>
     </div>
   </div>
 
   <div class="card">
-    <img src="placeholder.jpg" alt="Тунец стейк">
+    <img src="https://vitofish.me/wp-content/uploads/2023/07/squid.jpg" alt="Кальмар">
     <div class="card-content">
-      <div class="title">Тунец стейк 🇪🇸</div>
-      <div class="price">300 г+ — 35 €/кг</div>
-      <select id="weight-tuna">
-        <option value="0.3">300 г</option>
-        <option value="0.35">350 г</option>
-        <option value="0.4">400 г</option>
-      </select>
-      <button onclick="addToCartOption('Тунец стейк',35,document.getElementById('weight-tuna').value)">Добавить в корзину</button>
+      <div class="title">Кальмар 🦑</div>
+      <div class="price">1 кг — 25€</div>
+      <button onclick="addToCart('Кальмар',25)">Добавить в корзину</button>
     </div>
   </div>
 
   <div class="card">
-    <img src="IMG_4366.jpeg" alt="Карп">
+    <img src="https://vitofish.me/wp-content/uploads/2023/07/lobster.jpg" alt="Лобстер">
     <div class="card-content">
-      <div class="title">Карп</div>
-      <div class="price">1,3–4 кг — от 11 €/кг</div>
-      <select id="weight-carp">
-        <option value="1.3 - 2">1,3-2 кг</option>
-        <option value="2 - 3">2-3 кг</option>
-        <option value="3 - 4">3-4 кг</option>
-      </select>
-      <input type="checkbox" id="clean-carp"> Очистить
-      <button onclick="addToCartOption('Карп',11,document.getElementById('weight-carp').value,document.getElementById('clean-carp').checked)">Добавить в корзину</button>
+      <div class="title">Лобстер 🦞</div>
+      <div class="price">1 кг — 50€</div>
+      <button onclick="addToCart('Лобстер',50)">Добавить в корзину</button>
     </div>
   </div>
 </div>
@@ -195,24 +162,6 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
       <div class="title">Яйца</div>
       <div class="price">4 €/10 шт </div>
       <button onclick="addToCart('Яйца',4)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="placeholder.jpg" alt="Яблочный бренди">
-    <div class="card-content">
-      <div class="title">Домашний яблочный бренди 45°</div>
-      <div class="price">20 €/л</div>
-      <button onclick="addToCart('Бренди',20)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="placeholder.jpg" alt="Мёд">
-    <div class="card-content">
-      <div class="title">Мёд</div>
-      <div class="price">20 €/кг</div>
-      <button onclick="addToCart('Мёд',20)">Добавить в корзину</button>
     </div>
   </div>
 </div>
@@ -310,4 +259,4 @@ function confirmOrder(){
 }
 </script>
 </body>
-</html>
+</html></html>
