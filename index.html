@@ -13,11 +13,11 @@ header .cart-icon { position:absolute; top:20px; right:20px; font-size:48px; col
 .category-fish { background:#2563eb; }     
 .category-caviar { background:#FF6B6B; }  
 .category-bakery { background:#fbbf24; }  
-.category-seafood { background:#10b981; } /* новая категория морепродукты */
+.category-seafood { background:#10b981; }
 
 .container { padding:0 15px 20px 15px; display:grid; grid-template-columns:repeat(2,1fr); gap:25px; justify-items:center; }
 .card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.15); width:100%; max-width:640px; text-align:center; padding:20px; }
-.card img { width:100%; height:300px; object-fit:cover; border-radius:12px; margin-bottom:15px; background:white; } /* белый фон */
+.card img { width:100%; height:300px; object-fit:cover; border-radius:12px; margin-bottom:15px; background:white; }
 .card-content { padding:10px; }
 .title { font-size:48px; font-weight:800; margin-bottom:10px; }
 .price { font-size:40px; font-weight:bold; color:#2563eb; margin-bottom:15px; }
@@ -86,31 +86,87 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
     </div>
   </div>
 
+  <!-- Сёмга: полный набор -->
+  <div class="card">
+    <img src="placeholder.jpg" alt="Стейки сёмги">
+    <div class="card-content">
+      <div class="title">Стейки сёмги 🇳🇴</div>
+      <div class="price">~300 г — 12€</div>
+      <div style="display:flex; justify-content:center; align-items:center; gap:20px; margin:15px 0;">
+        <button type="button" onclick="changeQty(-1,'steak-qty')">−</button>
+        <span id="steak-qty" style="font-size:32px;">1</span>
+        <button type="button" onclick="changeQty(1,'steak-qty')">+</button>
+      </div>
+      <button onclick="addSteakToCart()">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="placeholder.jpg" alt="Сёмга филе свежее">
+    <div class="card-content">
+      <div class="title">Сёмга филе свежее 🇳🇴</div>
+      <div class="price">1,5–2,2 кг — 38 €/кг</div>
+      <select id="weight-salmon-fresh">
+        <option value="1.5">1,5 кг</option>
+        <option value="2">2 кг</option>
+      </select>
+      <button onclick="addToCartOption('Сёмга филе свежее',38,document.getElementById('weight-salmon-fresh').value)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="placeholder.jpg" alt="Сёмга филе заморозка">
+    <div class="card-content">
+      <div class="title">Сёмга филе заморозка</div>
+      <div class="price">1–2 кг — 30 €/кг</div>
+      <select id="weight-salmon-frozen">
+        <option value="1">1 кг</option>
+        <option value="1.5">1,5 кг</option>
+        <option value="2">2 кг</option>
+      </select>
+      <button onclick="addToCartOption('Сёмга филе заморозка',30,document.getElementById('weight-salmon-frozen').value)">Добавить в корзину</button>
+    </div>
+  </div>
+
   <div class="card">
     <img src="IMG_0064.jpeg" alt="Сёмга целая">
     <div class="card-content">
-      <div class="title">Сёмга 🇳🇴 целая тушка</div>
+      <div class="title">Сёмга целая тушка 🇳🇴</div>
       <div class="price">4–6 кг — 25 €/кг</div>
       <select id="weight-salmon-whole">
         <option value="4">4 кг</option>
         <option value="5">5 кг</option>
+        <option value="6">6 кг</option>
       </select>
       <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">Добавить в корзину</button>
     </div>
   </div>
 
   <div class="card">
-    <img src="placeholder.jpg" alt="Сёмга филе">
+    <img src="placeholder.jpg" alt="Слабой соли кусочки">
     <div class="card-content">
-      <div class="title">Сёмга 🇳🇴 филе</div>
-      <div class="price">1,5–2,2 кг — 38 €/кг</div>
-      <select id="weight-salmon-fillet">
-        <option value="1.5">1,5 кг</option>
-        <option value="2">2 кг</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга филе',38,document.getElementById('weight-salmon-fillet').value)">Добавить в корзину</button>
+      <div class="title">Сёмга слабой соли (кусочки)</div>
+      <div class="price">300 г — 14€</div>
+      <button onclick="addToCart('Сёмга слабой соли 300г',14)">Добавить в корзину</button>
     </div>
   </div>
+
+  <!-- Карп -->
+  <div class="card">
+    <img src="IMG_4366.jpeg" alt="Карп">
+    <div class="card-content">
+      <div class="title">Карп</div>
+      <div class="price">1,3–4 кг — от 11 €/кг</div>
+      <select id="weight-carp">
+        <option value="1.3 - 2">1,3–2 кг</option>
+        <option value="2 - 3">2–3 кг</option>
+        <option value="3 - 4">3–4 кг</option>
+      </select>
+      <input type="checkbox" id="clean-carp"> Очистить
+      <button onclick="addToCartOption('Карп',11,document.getElementById('weight-carp').value,document.getElementById('clean-carp').checked)">Добавить в корзину</button>
+    </div>
+  </div>
+
 </div>
 
 <!-- Категория Морепродукты -->
@@ -164,6 +220,24 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
       <button onclick="addToCart('Яйца',4)">Добавить в корзину</button>
     </div>
   </div>
+
+  <div class="card">
+    <img src="placeholder.jpg" alt="Бренди яблочный">
+    <div class="card-content">
+      <div class="title">Домашний яблочный бренди 45°</div>
+      <div class="price">20 €/л</div>
+      <button onclick="addToCart('Бренди',20)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="placeholder.jpg" alt="Мёд">
+    <div class="card-content">
+      <div class="title">Мёд</div>
+      <div class="price">20 €/кг</div>
+      <button onclick="addToCart('Мёд',20)">Добавить в корзину</button>
+    </div>
+  </div>
 </div>
 
 <div style="text-align:center; margin:20px;">
@@ -211,6 +285,21 @@ function addToCart(item, price){
   alert(`Добавлено: ${item} (~${price}€)`);
 }
 
+function changeQty(amount,id){
+  let el = document.getElementById(id);
+  let val = parseInt(el.innerText);
+  val += amount;
+  if(val<1) val=1;
+  el.innerText = val;
+}
+
+function addSteakToCart(){
+  let qty = parseInt(document.getElementById('steak-qty').innerText);
+  let totalPrice = (12*qty).toFixed(2);
+  cart.push({item:'Стейки сёмги', price:totalPrice, weight:qty*0.3});
+  alert(`Добавлено: Стейки сёмги — ${qty} шт (~${totalPrice}€)`);
+}
+
 function goToCartPage(){
   document.getElementById('catalog').style.display='none';
   document.getElementById('cart-page').style.display='block';
@@ -230,33 +319,6 @@ function updateCartUI(){
   cart.forEach((product,index)=>{
     total += parseFloat(product.price);
     cartDiv.innerHTML += `<div>${product.item} ${product.weight ? '— '+product.weight+' кг' : ''} ${product.option || ''} — ${product.price}€
-      <button class="cart-btn" onclick="removeFromCart(${index})">❌</button>
-    </div>`;
-  });
-  totalDiv.innerHTML = `Итого: ${total.toFixed(2)}€`;
-}
-
-function removeFromCart(index){
-  cart.splice(index,1);
-  updateCartUI();
-}
-
-function confirmOrder(){
-  let comment = document.getElementById('comment').value;
-  let phone = document.getElementById('phone').value;
-  let address = document.getElementById('address').value;
-  let orderText = cart.map(p=>`${p.item} ${p.weight ? '— '+p.weight+' кг' : ''} ${p.option || ''} — ${p.price}€`).join('\n');
-  if(comment) orderText += `\nКомментарий: ${comment}`;
-  if(phone) orderText += `\nТелефон: ${phone}`;
-  if(address) orderText += `\nАдрес: ${address}`;
-  tg.sendData(`Заказ от пользователя:\n${orderText}`);
-  alert('Заказ отправлен! Мы свяжемся с вами.');
-  cart=[];
-  document.getElementById('comment').value='';
-  document.getElementById('phone').value='+38269575828';
-  document.getElementById('address').value='';
-  goBackToCatalog();
-}
-</script>
+      <button class="cart-btn" onclick</script>
 </body>
 </html></html>
