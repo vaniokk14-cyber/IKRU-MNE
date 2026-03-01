@@ -35,6 +35,42 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
 .small-img {
   height: 220px !important;
 }
+.live-price {
+  font-weight: bold;
+  font-size: 18px;
+  color: #e11d48;
+  margin-bottom: 10px;
+}
+
+.custom-slider {
+  width: 100%;
+  margin: 15px 0;
+  appearance: none;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #f59e0b);
+  outline: none;
+}
+
+/* Кружок */
+.custom-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+.custom-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: none;
+}
 </style>
 </head>
 <body>
@@ -145,14 +181,49 @@ footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
     </div>
   </div>
 
-  <div class="card">
-    <img src="IMG_4386.jpeg" alt="Слабой соли кусочки">
-    <div class="card-content">
-      <div class="title">Сёмга слабой соли (кусочки)</div>
-      <div class="price">300 г — 14€</div>
-      <button onclick="addToCart('Сёмга слабой соли 300г',14)">Добавить в корзину</button>
-    </div>
+<div class="card">
+  <img src="salmon-light.jpeg" alt="Сёмга слабой соли" class="salmon-img">
+
+  <div class="card-content">
+    <div class="title">Сёмга 🇳🇴 слабой соли</div>
+    <div class="price">45 € / кг • от 200 г</div>
+
+    <div id="weight-display">Вес: 300 г</div>
+    <div id="price-display" class="live-price">≈ 13.50 €</div>
+
+    <input 
+      type="range"
+      id="weight-salmon-light"
+      min="200"
+      max="1000"
+      step="50"
+      value="300"
+      class="custom-slider"
+      oninput="
+        const grams = this.value;
+        const pricePerKg = 45;
+        const total = (grams / 1000) * pricePerKg;
+
+        document.getElementById('weight-display').innerText = 'Вес: ' + grams + ' г';
+        document.getElementById('price-display').innerText = '≈ ' + total.toFixed(2) + ' €';
+      "
+    >
+
+    <button onclick="
+      const grams = document.getElementById('weight-salmon-light').value;
+      const pricePerKg = 45;
+      const total = (grams / 1000) * pricePerKg;
+
+      addToCartOption(
+        'Сёмга слабой соли',
+        total.toFixed(2),
+        grams + ' г'
+      );
+    ">
+      Добавить в корзину
+    </button>
   </div>
+</div>
 
   <!-- Карп -->
   <div class="card">
