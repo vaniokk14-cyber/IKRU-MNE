@@ -1,430 +1,152 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
-body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; background:#f0f5f9; color:#1e293b; }
-header { position:relative; background: linear-gradient(90deg,#1e3a8a,#3b82f6,#f59e0b); padding:40px 15px; text-align:center; color:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px;}
-header h1 { margin:0; font-size:64px; font-weight:900; }
-header .cart-icon { position:absolute; top:20px; right:20px; font-size:48px; color:#f59e0b; cursor:pointer; }
-
-.category-title { font-size:56px; font-weight:bold; text-align:center; padding:15px 0; margin:20px 0 10px; border-radius:10px; color:white; }
-.category-fish { background:#2563eb; }     
-.category-caviar { background:#FF6B6B; }  
-.category-bakery { background:#fbbf24; }  
-.category-seafood { background:#10b981; }
-
-.container { padding:0 15px 20px 15px; display:grid; grid-template-columns:repeat(2,1fr); gap:25px; justify-items:center; }
-.card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.15); width:100%; max-width:640px; text-align:center; padding:20px; }
-.card img { width:100%; height:300px; object-fit:cover; border-radius:12px; margin-bottom:15px; background:white; }
-.card-content { padding:10px; }
-.title { font-size:48px; font-weight:800; margin-bottom:10px; }
-.price { font-size:40px; font-weight:bold; color:#2563eb; margin-bottom:15px; }
-select,input[type=checkbox]{font-size:28px;padding:8px;margin:10px 0;}
-button { width:100%; background: linear-gradient(90deg,#2563eb,#60a5fa); border:none; padding:25px 0; border-radius:16px; color:white; font-size:28px; font-weight:bold; cursor:pointer; margin-top:10px; }
-button:hover { opacity:0.85; }
-
-#cart-page { display:none; padding:30px; }
-#cart-items div { background:#fff; padding:20px; margin-bottom:15px; border-radius:16px; box-shadow:0 4px 15px rgba(0,0,0,0.1); font-size:28px; display:flex; justify-content:space-between; align-items:center;}
-.cart-btn { font-size:32px; padding:10px 20px; border-radius:16px; font-weight:bold; background-color:#f59e0b; color:white; cursor:pointer; margin-left:10px; }
-
-#comment,#phone,#address{width:95%;margin:10px auto;padding:18px;font-size:28px;border-radius:12px;border:1px solid #cbd5e1;display:block;}
-#total{font-size:36px;font-weight:bold;margin:20px 0;text-align:center;}
-footer{text-align:center;padding:20px;font-size:18px;opacity:0.8;}
-
-.live-price {
-  font-weight: bold;
-  font-size: 18px;
-  color: #e11d48;
-  margin-bottom: 10px;
-}
-
-.custom-slider {
-  width: 100%;
-  margin: 15px 0;
-  appearance: none;
-  height: 8px;
-  border-radius: 5px;
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #f59e0b);
-  outline: none;
-}
-
-/* Кружок */
-.custom-slider::-webkit-slider-thumb {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f59e0b;
-  cursor: pointer;
-  border: 3px solid white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-.custom-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #f59e0b;
-  cursor: pointer;
-  border: none;
-}
-/* Слайдер общий */
-input[type=range] {
-  -webkit-appearance: none; /* сброс стандартного вида */
-  width: 100%;
-  height: 12px; 
-  background: linear-gradient(90deg, #2563eb, #60a5fa);
-  border-radius: 8px;
-  outline: none;
-  margin: 10px 0;
-}
-
-/* Ручка (ползунок) для Chrome, Safari, мобильные */
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 36px;      /* размер ручки */
-  height: 36px;     /* размер ручки */
-  background: #f59e0b;  /* яркий цвет */
-  border-radius: 50%;
-  border: 3px solid #fff; /* белая окантовка для контраста */
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-/* Ручка для Firefox */
-input[type=range]::-moz-range-thumb {
-  width: 36px;
-  height: 36px;
-  background: #f59e0b;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-</style>
-</head>
-<body>
-
-<header>
-<h1>Добро пожаловать</h1>
-<div class="cart-icon" onclick="goToCartPage()">🛒</div>
-</header>
-
-<div id="catalog">
-
-<!-- Категория Икра -->
-<div class="category-title category-caviar">🥄 Икра</div>
-<div class="container">
-  <div class="card">
-    <img src="IMG_4384.jpeg" alt="Икра форели">
-    <div class="card-content">
-      <div class="title">Икра форели</div>
-      <div class="price">200 г — 25€ / 250 г — 30€</div>
-      <select id="weight-caviar1">
-        <option value="0.2">200 г</option>
-        <option value="0.25">250 г</option>
-      </select>
-      <button onclick="addToCartOption('Икра форели',125,document.getElementById('weight-caviar1').value)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="IMG_9501.jpeg" alt="Икра кеты">
-    <div class="card-content">
-      <div class="title">Икра кеты Nordic Seafood 🇳🇴</div>
-      <div class="price">500 г — 90€</div>
-      <button onclick="addToCart('Икра кеты',90)">Добавить в корзину</button>
-    </div>
-  </div>
-</div>
-
-<!-- Категория Рыба -->
-<div class="category-title category-fish">🐟 Рыба</div>
-<div class="container">
-  <div class="card">
-    <img src="IMG_4367.webp" alt="Форель тушка">
-    <div class="card-content">
-      <div class="title">Форель (тушка)</div>
-      <div class="price">1,5–2 кг — 13 €/кг</div>
-      <select id="weight-trout">
-        <option value="1.5">1,5 кг</option>
-        <option value="2">2 кг</option>
-      </select>
-      <input type="checkbox" id="clean-trout"> Очистить
-      <button onclick="addToCartOption('Форель тушка',13,document.getElementById('weight-trout').value,document.getElementById('clean-trout').checked)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <!-- Сёмга: полный набор -->
-  <div class="card">
-    <img src="IMG_4365.jpeg" alt="Стейки сёмги">
-    <div class="card-content">
-      <div class="title">Стейки сёмги 🇳🇴</div>
-      <div class="price">~300 г — 12€</div>
-      <div style="display:flex; justify-content:center; align-items:center; gap:20px; margin:15px 0;">
-        <button type="button" onclick="changeQty(-1,'steak-qty')">−</button>
-        <span id="steak-qty" style="font-size:32px;">1</span>
-        <button type="button" onclick="changeQty(1,'steak-qty')">+</button>
-      </div>
-      <button onclick="addSteakToCart()">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="placeholder.jpg" alt="Сёмга филе свежее">
-    <div class="card-content">
-      <div class="title">Сёмга филе свежее 🇳🇴</div>
-      <div class="price">1,5–2,2 кг — 38 €/кг</div>
-      <select id="weight-salmon-fresh">
-        <option value="1.5">1,5 кг</option>
-        <option value="2">2 кг</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга филе свежее',38,document.getElementById('weight-salmon-fresh').value)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="placeholder.jpg" alt="Сёмга филе заморозка">
-    <div class="card-content">
-      <div class="title">Сёмга филе заморозка</div>
-      <div class="price">1–2 кг — 30 €/кг</div>
-      <select id="weight-salmon-frozen">
-        <option value="1">1 кг</option>
-        <option value="1.5">1,5 кг</option>
-        <option value="2">2 кг</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга филе заморозка',30,document.getElementById('weight-salmon-frozen').value)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="IMG_4393.jpeg" 
-    <div class="card-content">
-      <div class="title">Сёмга целая тушка 🇳🇴</div>
-      <div class="price">4–6 кг — 25 €/кг</div>
-      <select id="weight-salmon-whole">
-        <option value="4">4 кг</option>
-        <option value="5">5 кг</option>
-        <option value="6">6 кг</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">Добавить в корзину</button>
-    </div>
-  </div>
-
-<div class="card">
-  <img src="IMG_4386.jpeg" alt="Сёмга слабой соли" class="salmon-img">
-
-  <div class="card-content">
-    <div class="title">Сёмга 🇳🇴 слабой соли</div>
-    <div class="price">45 € / кг • от 200 г</div>
-
-    <div id="weight-display">Вес: 300 г</div>
-    <div id="price-display" class="live-price">≈ 13.50 €</div>
-
-    <input 
-      type="range"
-      id="weight-salmon-light"
-      min="200"
-      max="1000"
-      step="50"
-      value="300"
-      class="custom-slider"
-      oninput="
-        const grams = this.value;
-        const pricePerKg = 45;
-        const total = (grams / 1000) * pricePerKg;
-
-        document.getElementById('weight-display').innerText = 'Вес: ' + grams + ' г';
-        document.getElementById('price-display').innerText = '≈ ' + total.toFixed(2) + ' €';
-      "
-    >
-
-    <button onclick="
-      const grams = document.getElementById('weight-salmon-light').value;
-      const pricePerKg = 45;
-      const total = (grams / 1000) * pricePerKg;
-
-      addToCartOption(
-        'Сёмга слабой соли',
-        total.toFixed(2),
-        grams + ' г'
-      );
-    ">
-      Добавить в корзину
-    </button>
-  </div>
-</div>
-
-  <!-- Карп -->
-  <div class="card">
-    <img src="IMG_4366.jpeg" alt="Карп">
-    <div class="card-content">
-      <div class="title">Карп</div>
-      <div class="price">1,3–4 кг — от 11 €/кг</div>
-      <select id="weight-carp">
-        <option value="1.3 - 2">1,3–2 кг</option>
-        <option value="2 - 3">2–3 кг</option>
-        <option value="3 - 4">3–4 кг</option>
-      </select>
-      <input type="checkbox" id="clean-carp"> Очистить
-      <button onclick="addToCartOption('Карп',11,document.getElementById('weight-carp').value,document.getElementById('clean-carp').checked)">Добавить в корзину</button>
-    </div>
-  </div>
-
-</div>
-
-<!-- Категория Морепродукты -->
-<div class="category-title category-seafood">🦐 Морепродукты</div>
-<div class="container">
-  <div class="card">
-    <img src="https://vitofish.me/wp-content/uploads/2023/07/shrimps.jpg" alt="Креветки">
-    <div class="card-content">
-      <div class="title">Креветки 🦐</div>
-      <div class="price">500 г — 18€</div>
-      <button onclick="addToCart('Креветки',18)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://vitofish.me/wp-content/uploads/2023/07/octopus.jpg" alt="Осьминог">
-    <div class="card-content">
-      <div class="title">Осьминог 🐙</div>
-      <div class="price">1 кг — 35€</div>
-      <button onclick="addToCart('Осьминог',35)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://vitofish.me/wp-content/uploads/2023/07/squid.jpg" alt="Кальмар">
-    <div class="card-content">
-      <div class="title">Кальмар 🦑</div>
-      <div class="price">1 кг — 25€</div>
-      <button onclick="addToCart('Кальмар',25)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://vitofish.me/wp-content/uploads/2023/07/lobster.jpg" alt="Лобстер">
-    <div class="card-content">
-      <div class="title">Лобстер 🦞</div>
-      <div class="price">1 кг — 50€</div>
-      <button onclick="addToCart('Лобстер',50)">Добавить в корзину</button>
-    </div>
-  </div>
-</div>
-
-<!-- Категория Бакалея -->
-<div class="category-title category-bakery">🥚 Бакалея</div>
-<div class="container">
-  <div class="card">
-    <img src="IMG_4388.jpeg" alt="Яйца">
-    <div class="card-content">
-      <div class="title">Яйца</div>
-      <div class="price">4 €/10 шт </div>
-      <button onclick="addToCart('Яйца',4)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="IMG_4389.jpeg" alt="Бренди яблочный">
-    <div class="card-content">
-      <div class="title">Домашний яблочный бренди 45°</div>
-      <div class="price">20 €/л</div>
-      <button onclick="addToCart('Бренди',20)">Добавить в корзину</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="placeholder.jpg" alt="Мёд">
-    <div class="card-content">
-      <div class="title">Мёд</div>
-      <div class="price">20 €/кг</div>
-      <button onclick="addToCart('Мёд',20)">Добавить в корзину</button>
-    </div>
-  </div>
-</div>
-
-<div style="text-align:center; margin:20px;">
-  <button onclick="goToCartPage()">Перейти к корзине</button>
-</div>
-</div>
-
-<!-- КОРЗИНА -->
-<div id="cart-page">
-<h2>Корзина</h2>
-<div id="cart-items"></div>
-<div id="total"></div>
-
-<textarea id="comment" placeholder="Комментарий к заказу"></textarea>
-<input id="phone" type="text" placeholder="Телефон" value="+38269575828" />
-<input id="address" type="text" placeholder="Адрес / геолокация" />
-
-<div style="font-size:28px; color:#f59e0b; margin:20px 0; text-align:center;">
-  *Финальная стоимость может отличаться в зависимости от точного веса и упаковки.
-</div>
-
-<button onclick="confirmOrder()" style="width:100%; font-size:32px; padding:25px; background:#2563eb; color:white; border-radius:16px; margin-bottom:10px;">Подтвердить заказ</button>
-<button onclick="goBackToCatalog()" style="width:100%; font-size:32px; padding:25px; background:#f59e0b; color:white; border-radius:16px;">Назад в витрину</button>
-</div>
-
-<footer>
-📞 Заказы заранее: +382 69 575 828 • IKRU MNE
-</footer>
-
-<script>
 let tg = window.Telegram.WebApp;
 tg.expand();
 
 let cart = [];
 
 function addToCartOption(item, pricePerKg, weightKg, cleaned=false){
-  let totalPrice = (pricePerKg * weightKg).toFixed(2);
+
+  let totalPrice;
+
+  if(isNaN(weightKg)){
+    totalPrice = pricePerKg;
+  }else{
+    totalPrice = (pricePerKg * weightKg).toFixed(2);
+  }
+
   let optionText = cleaned ? "очищен" : "";
-  cart.push({item, price: totalPrice, weight: weightKg, option: optionText});
-  alert(`Добавлено: ${item} — ${weightKg} кг ${optionText} (~${totalPrice}€)`);
+
+  cart.push({
+    item:item,
+    price: totalPrice,
+    weight: weightKg,
+    option: optionText
+  });
+
+  alert(`Добавлено: ${item} (~${totalPrice}€)`);
 }
 
 function addToCart(item, price){
-  cart.push({item, price});
+
+  cart.push({
+    item:item,
+    price:price
+  });
+
   alert(`Добавлено: ${item} (~${price}€)`);
 }
 
 function changeQty(amount,id){
+
   let el = document.getElementById(id);
+
   let val = parseInt(el.innerText);
+
   val += amount;
-  if(val<1) val=1;
+
+  if(val < 1) val = 1;
+
   el.innerText = val;
+
 }
 
 function addSteakToCart(){
+
   let qty = parseInt(document.getElementById('steak-qty').innerText);
-  let totalPrice = (12*qty).toFixed(2);
-  cart.push({item:'Стейки сёмги', price:totalPrice, weight:qty*0.3});
+
+  let totalPrice = (12 * qty).toFixed(2);
+
+  cart.push({
+    item:'Стейки сёмги',
+    price: totalPrice,
+    weight: (qty * 0.3).toFixed(1)
+  });
+
   alert(`Добавлено: Стейки сёмги — ${qty} шт (~${totalPrice}€)`);
+
 }
 
 function goToCartPage(){
+
   document.getElementById('catalog').style.display='none';
+
   document.getElementById('cart-page').style.display='block';
+
   updateCartUI();
+
 }
 
 function goBackToCatalog(){
+
   document.getElementById('cart-page').style.display='none';
+
   document.getElementById('catalog').style.display='block';
+
 }
 
 function updateCartUI(){
+
   let cartDiv = document.getElementById('cart-items');
+
   let totalDiv = document.getElementById('total');
+
   cartDiv.innerHTML='';
-  let total=0;
+
+  let total = 0;
+
   cart.forEach((product,index)=>{
+
     total += parseFloat(product.price);
-    cartDiv.innerHTML += `<div>${product.item} ${product.weight ? '— '+product.weight+' кг' : ''} ${product.option || ''} — ${product.price}€
-      <button class="cart-btn" onclick</script>
-</body>
-</html></html>
+
+    cartDiv.innerHTML += `
+      <div>
+        ${product.item}
+        ${product.weight ? ' — '+product.weight+' кг' : ''}
+        ${product.option ? ' '+product.option : ''}
+        — ${product.price} €
+        <button class="cart-btn" onclick="removeFromCart(${index})">✖</button>
+      </div>
+    `;
+
+  });
+
+  totalDiv.innerText = "Итого: " + total.toFixed(2) + " €";
+
+}
+
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
+  updateCartUI();
+
+}
+
+function confirmOrder(){
+
+  let phone = document.getElementById('phone').value;
+
+  let address = document.getElementById('address').value;
+
+  let comment = document.getElementById('comment').value;
+
+  if(cart.length === 0){
+
+    alert("Корзина пустая");
+
+    return;
+
+  }
+
+  let orderText = "🛒 Новый заказ:%0A%0A";
+
+  cart.forEach(p=>{
+
+    orderText += `${p.item} — ${p.price}€%0A`;
+
+  });
+
+  orderText += `%0A📞 ${phone}%0A📍 ${address}%0A💬 ${comment}`;
+
+  tg.sendData(orderText);
+
+}
