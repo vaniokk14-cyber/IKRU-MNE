@@ -120,13 +120,7 @@ input[type=range]::-moz-range-thumb {
   width: 36px; height: 36px; background: #f59e0b; border-radius: 50%; border: 3px solid #fff;
   cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
-input[type=checkbox] {
-  width: 32px;
-  height: 32px;
-  vertical-align: middle;
-  margin-right: 10px;
-  cursor: pointer;
-}
+
 </style>
 </head>
 <body>
@@ -239,25 +233,15 @@ input[type=checkbox] {
     <div class="card-content">
       <div class="title">Форель (тушка)</div>
       <div class="price">1,5–2 кг — 13 €/кг</div>
-
-      <div style="display:flex; align-items:center; gap:15px; margin:10px 0;">
-        <select id="weight-trout" style="flex:1; font-size:28px; padding:8px;">
-          <option value="1.5">1,5 кг</option>
-          <option value="2">2 кг</option>
-        </select>
-
-        <label style="display:flex; align-items:center; font-size:28px; gap:10px; margin:0;">
-          <input type="checkbox" id="clean-trout" style="width:32px; height:32px; cursor:pointer;">
-          Очистить
-        </label>
-      </div>
-
-      <button onclick="addToCartOption('Форель тушка',13,document.getElementById('weight-trout').value,document.getElementById('clean-trout').checked)">
-        Добавить в корзину
-      </button>
+      <select id="weight-trout">
+        <option value="1.5">1,5 кг</option>
+        <option value="2">2 кг</option>
+      </select>
+      <input type="checkbox" id="clean-trout"> Очистить
+      <button onclick="addToCartOption('Форель тушка',13,document.getElementById('weight-trout').value,document.getElementById('clean-trout').checked)">Добавить в корзину</button>
     </div>
   </div>
-</div>
+
   <div class="card">
     <img src="IMG_4365.jpeg" alt="Стейки сёмги">
     <div class="card-content">
@@ -317,50 +301,41 @@ input[type=checkbox] {
     <img src="IMG_4459.jpeg" alt="Сёмга слабой соли" class="salmon-img">
     <div class="card-content">
       <div class="title">Сёмга 🇳🇴 слабой соли</div>
-      <div class="price">40 € / кг • от 200 г</div>
+      <div class="price">45 € / кг • от 200 г</div>
       <div id="weight-display">Вес: 300 г</div>
-      <div id="price-display" class="live-price">≈ 12.00 €</div>
+      <div id="price-display" class="live-price">≈ 13.50 €</div>
       <input type="range" id="weight-salmon-light" min="200" max="1000" step="50" value="300" class="custom-slider"
         oninput="
           const grams = this.value;
-          const total = (grams / 1000) * 40;
+          const total = (grams / 1000) * 45;
           document.getElementById('weight-display').innerText = 'Вес: ' + grams + ' г';
           document.getElementById('price-display').innerText = '≈ ' + total.toFixed(2) + ' €';
         "
       >
       <button onclick="
         const grams = document.getElementById('weight-salmon-light').value;
-        const total = (grams / 1000) * 40;
+        const total = (grams / 1000) * 45;
         addToCartOption('Сёмга слабой соли', total.toFixed(2), grams + ' г');
       ">Добавить в корзину</button>
     </div>
   </div>
 
-<!-- Карп -->
-<div class="card">
-  <img src="IMG_4366.jpeg" alt="Карп">
-  <div class="card-content">
-    <div class="title">Карп</div>
-    <div class="price">1,3–4 кг — от 11 €/кг</div>
-
-    <div style="display:flex; align-items:center; gap:15px; margin:10px 0;">
-      <select id="weight-carp" style="flex:1; font-size:28px; padding:8px;">
+  <div class="card">
+    <img src="IMG_4366.jpeg" alt="Карп">
+    <div class="card-content">
+      <div class="title">Карп</div>
+      <div class="price">1,3–4 кг — от 11 €/кг</div>
+      <select id="weight-carp">
         <option value="1.3 - 2">1,3–2 кг</option>
         <option value="2 - 3">2–3 кг</option>
         <option value="3 - 4">3–4 кг</option>
       </select>
-
-      <label style="display:flex; align-items:center; font-size:28px; gap:10px; margin:0;">
-        <input type="checkbox" id="clean-carp" style="width:32px; height:32px; cursor:pointer;">
-        Очистить
-      </label>
+      <input type="checkbox" id="clean-carp"> Очистить
+      <button onclick="addToCartOption('Карп',11,document.getElementById('weight-carp').value,document.getElementById('clean-carp').checked)">Добавить в корзину</button>
     </div>
-
-    <button onclick="addToCartOption('Карп',11,document.getElementById('weight-carp').value,document.getElementById('clean-carp').checked)">
-      Добавить в корзину
-    </button>
   </div>
 </div>
+
 <!-- Морепродукты -->
     
 <!-- Раки живые -->
