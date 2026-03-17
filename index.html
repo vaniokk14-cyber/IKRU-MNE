@@ -306,28 +306,32 @@ input[type=range]::-moz-range-thumb {
 
 <!-- КОРЗИНА -->
 <div id="cart-page">
-<h2>Корзина</h2>
-<div id="cart-items"></div>
-<div id="total"></div>
+  <h2>
+    🛒 Корзина
+    <button onclick="goBackToCatalog()" style="font-size:24px; float:right; background:none; border:none; cursor:pointer;">⬅ Назад</button>
+  </h2>
+  <div id="cart-items"></div>
+  <div id="total"></div>
 
-<textarea id="comment" placeholder="Комментарий к заказу"></textarea>
-<input id="phone" type="text" placeholder="Телефон" value="+38269575828" />
-<input id="address" type="text" placeholder="Адрес / геолокация" />
-<select id="city">
-  <option value="Подгорица">Подгорица</option>
-  <option value="Бар">Бар</option>
-  <option value="Сутоморе">Сутоморе</option>
-  <option value="Петровац">Петровац</option>
-  <option value="Будва">Будва</option>
-  <option value="Радановичи">Радановичи</option>
-  <option value="Луштица">Луштица</option>
-  <option value="Тиват">Тиват</option>
-  <option value="Котор">Котор</option>
-  <option value="Рисан">Рисан</option>
-  <option value="Герцен Нови">Герцен Нови</option>
-</select>
+  <textarea id="comment" placeholder="Комментарий к заказу"></textarea>
+  <input id="phone" type="text" placeholder="Телефон" value="+38269575828" />
+  <input id="address" type="text" placeholder="Адрес / геолокация" />
 
-<button onclick="submitOrder()" style="margin-top:20px; background:#2563eb;">Подтвердить заказ</button>
+  <select id="city">
+    <option value="Подгорица">Подгорица</option>
+    <option value="Бар">Бар</option>
+    <option value="Сутоморе">Сутоморе</option>
+    <option value="Петровац">Петровац</option>
+    <option value="Будва">Будва</option>
+    <option value="Радановичи">Радановичи</option>
+    <option value="Луштица">Луштица</option>
+    <option value="Тиват">Тиват</option>
+    <option value="Котор">Котор</option>
+    <option value="Рисан">Рисан</option>
+    <option value="Герцен Нови">Герцен Нови</option>
+  </select>
+
+  <button onclick="submitOrder()" style="margin-top:20px; background:#2563eb; color:white; padding:15px; border-radius:10px;">Подтвердить заказ</button>
 </div>
 
 <script>
