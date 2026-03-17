@@ -135,14 +135,27 @@ input[type=range]::-moz-range-thumb {
 <div class="category-title category-hit">🔥 Хиты продаж</div>
 <div class="container">
 
-  <!-- Раки живые -->
+  <!-- Раки живые — Хит сезона -->
 <div class="card">
+  <div class="category-hit" style="margin-bottom:10px;">🔥 Хит сезона</div>
   <img src="IMG_4527.png" alt="Раки живые">
   <div class="card-content">
     <div class="title">Раки живые 🦞</div>
     <div class="price">22 €/кг</div>
-    <input type="number" id="weight-crayfish2" min="0.5" max="10" step="0.1" value="1" style="font-size:28px; width:100%; margin:10px 0;">
-    <button onclick="addToCartOption('Раки живые',22,document.getElementById('weight-crayfish2').value)">Добавить в корзину</button>
+    <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0;">
+      <button onclick="
+        const input = document.getElementById('weight-crayfish');
+        let val = parseFloat(input.value);
+        if(val > 1) { val -= 0.5; input.value = val.toFixed(1); }
+      ">➖</button>
+      <input type="number" id="weight-crayfish" min="1" max="50" step="0.5" value="1" style="font-size:28px; width:100px; text-align:center;">
+      <button onclick="
+        const input = document.getElementById('weight-crayfish');
+        let val = parseFloat(input.value);
+        if(val < 50) { val += 1; input.value = val.toFixed(1); }
+      ">➕</button>
+    </div>
+    <button onclick="addToCartOption('Раки живые',22,document.getElementById('weight-crayfish').value)">Добавить в корзину</button>
   </div>
 </div>
 
@@ -325,10 +338,25 @@ input[type=range]::-moz-range-thumb {
 
 <!-- Морепродукты -->
     
+<!-- Раки живые -->
+<div class="card">
+  <img src="IMG_4527.png" alt="Раки живые">
   <div class="card-content">
-    <div class="title">Раки живые 🦞 </div>
-    <div class="price">22 € / кг</div>
-    <input type="number" id="weight-crayfish" min="1" max="10" step="0.1" value="1" style="font-size:28px; width:100%; margin:10px 0;" placeholder="Вес в кг">
+    <div class="title">Раки живые 🦞</div>
+    <div class="price">22 €/кг</div>
+    <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin:10px 0;">
+      <button onclick="
+        const input = document.getElementById('weight-crayfish');
+        let val = parseFloat(input.value);
+        if(val > 1) { val -= 0.5; input.value = val.toFixed(1); }
+      ">➖</button>
+      <input type="number" id="weight-crayfish" min="1" max="50" step="0.5" value="1" style="font-size:28px; width:100px; text-align:center;">
+      <button onclick="
+        const input = document.getElementById('weight-crayfish');
+        let val = parseFloat(input.value);
+        if(val < 50) { val += 1; input.value = val.toFixed(1); }
+      ">➕</button>
+    </div>
     <button onclick="addToCartOption('Раки живые',22,document.getElementById('weight-crayfish').value)">Добавить в корзину</button>
   </div>
 </div>
