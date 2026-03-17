@@ -9,6 +9,16 @@ header { position:relative; background: linear-gradient(90deg,#1e3a8a,#3b82f6,#f
 header h1 { margin:0; font-size:64px; font-weight:900; }
 header .cart-icon { position:absolute; top:20px; right:20px; font-size:48px; color:#f59e0b; cursor:pointer; }
 
+.category-hit {
+  background: linear-gradient(90deg,#ff3b3b,#ff6b6b);
+  font-size: 56px;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 0;
+  margin: 20px 0 10px;
+  border-radius: 10px;
+  color: white;
+}
 .category-title { font-size:56px; font-weight:bold; text-align:center; padding:15px 0; margin:20px 0 10px; border-radius:10px; color:white; }
 .category-fish { background:#2563eb; }     
 .category-caviar { background:#FF6B6B; }  
@@ -99,6 +109,59 @@ input[type=range]::-moz-range-thumb {
 </header>
 
 <div id="catalog">
+<!-- Хиты продаж -->
+<div class="category-title category-hit">🔥 Хиты продаж</div>
+<div class="container">
+
+  <!-- Раки живые -->
+  <div class="card" id="hit-crayfish">
+    <img src="IMG_crayfish.jpeg" alt="Раки">
+    <div class="card-content">
+      <div class="title">Раки живые 🦀</div>
+      <div class="price">22 €/кг</div>
+      <button onclick="addToCartOption('Раки живые',22,1)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <!-- Икра форели -->
+  <div class="card" id="hit-caviar">
+    <img src="IMG_4384.jpeg" alt="Икра форели">
+    <div class="card-content">
+      <div class="title">Икра форели 🥄</div>
+      <div class="price">200 г — 25€ / 250 г — 30€</div>
+      <select id="hit-weight-caviar">
+        <option value="0.2">200 г</option>
+        <option value="0.25">250 г</option>
+      </select>
+      <button onclick="addToCartOption('Икра форели',125,document.getElementById('hit-weight-caviar').value)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <!-- Сёмга слабой соли -->
+  <div class="card" id="hit-salmon-light">
+    <img src="IMG_4386.jpeg" alt="Сёмга слабой соли">
+    <div class="card-content">
+      <div class="title">Сёмга 🇳🇴 слабой соли</div>
+      <div class="price">45 €/кг • от 200 г</div>
+      <input type="range" min="200" max="1000" step="50" value="300"
+             class="custom-slider" id="hit-weight-salmon"
+             oninput="
+               const grams = this.value;
+               const total = (grams / 1000) * 45;
+               document.getElementById('hit-weight-display').innerText = 'Вес: ' + grams + ' г';
+               document.getElementById('hit-price-display').innerText = '≈ ' + total.toFixed(2) + ' €';
+             ">
+      <div id="hit-weight-display">Вес: 300 г</div>
+      <div id="hit-price-display" class="live-price">≈ 13.50 €</div>
+      <button onclick="
+        const grams = document.getElementById('hit-weight-salmon').value;
+        const total = (grams / 1000) * 45;
+        addToCartOption('Сёмга слабой соли', total.toFixed(2), grams + ' г');
+      ">Добавить в корзину</button>
+    </div>
+  </div>
+
+</div>
 
 <!-- Категория Икра -->
 <div class="category-title category-caviar">🥄 Икра</div>
