@@ -232,18 +232,32 @@ input[type=checkbox] {
 </div>
 
 <!-- Категория Рыба -->
-<select id="weight-trout">
-  <option value="1.5">1,5 кг</option>
-  <option value="2">2 кг</option>
-</select>
+<div class="category-title category-fish">🐟 Рыба</div>
+<div class="container">
+  <div class="card">
+    <img src="IMG_4367.webp" alt="Форель тушка">
+    <div class="card-content">
+      <div class="title">Форель (тушка)</div>
+      <div class="price">1,5–2 кг — 13 €/кг</div>
 
-<label style="display:flex; align-items:center; gap:10px; font-size:28px; margin:10px 0;">
-  <input type="checkbox" id="clean-trout">
-  Очистить
-</label>
+      <div style="display:flex; align-items:center; gap:15px; margin:10px 0;">
+        <select id="weight-trout" style="flex:1; font-size:28px; padding:8px;">
+          <option value="1.5">1,5 кг</option>
+          <option value="2">2 кг</option>
+        </select>
 
-<button onclick="addToCartOption('Форель тушка',13,document.getElementById('weight-trout').value,document.getElementById('clean-trout').checked)">Добавить в корзину</button>
+        <label style="display:flex; align-items:center; font-size:28px; gap:10px; margin:0;">
+          <input type="checkbox" id="clean-trout" style="width:32px; height:32px; cursor:pointer;">
+          Очистить
+        </label>
+      </div>
 
+      <button onclick="addToCartOption('Форель тушка',13,document.getElementById('weight-trout').value,document.getElementById('clean-trout').checked)">
+        Добавить в корзину
+      </button>
+    </div>
+  </div>
+</div>
   <div class="card">
     <img src="IMG_4365.jpeg" alt="Стейки сёмги">
     <div class="card-content">
