@@ -136,14 +136,15 @@ input[type=range]::-moz-range-thumb {
 <div class="container">
 
   <!-- Раки живые -->
-  <div class="card" id="hit-crayfish">
-    <img src="IMG_4527.png" alt="Раки">
-    <div class="card-content">
-      <div class="title">Раки живые 🦞</div>
-      <div class="price">22 €/кг</div>
-      <button onclick="addToCartOption('Раки живые',22,1)">Добавить в корзину</button>
-    </div>
+<div class="card">
+  <img src="IMG_4527.png" alt="Раки живые">
+  <div class="card-content">
+    <div class="title">Раки живые 🦞</div>
+    <div class="price">22 €/кг</div>
+    <input type="number" id="weight-crayfish2" min="0.5" max="10" step="0.1" value="1" style="font-size:28px; width:100%; margin:10px 0;">
+    <button onclick="addToCartOption('Раки живые',22,document.getElementById('weight-crayfish2').value)">Добавить в корзину</button>
   </div>
+</div>
 
   <!-- Икра форели -->
   <div class="card" id="hit-caviar">
