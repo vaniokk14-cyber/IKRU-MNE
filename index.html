@@ -211,19 +211,24 @@ input[type=range]::-moz-range-thumb {
     </div>
   </div>
 
-  <div class="card">
-    <img 
-<img src="IMG_4393.jpeg" alt="Сёмга целая тушка" class="small-img">
-      <div class="title">Сёмга целая тушка 🇳🇴</div>
-      <div class="price">4–6 кг — 25 €/кг</div>
-      <select id="weight-salmon-whole">
-        <option value="4">4 кг</option>
-        <option value="5">5 кг</option>
-        <option value="6">6 кг</option>
-      </select>
-      <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">Добавить в корзину</button>
-    </div>
+<div class="card">
+  <img src="IMG_4393.jpeg" alt="Сёмга целая тушка">
+
+  <div class="card-content">
+    <div class="title">Сёмга целая тушка 🇳🇴</div>
+    <div class="price">4–6 кг — 25 €/кг</div>
+
+    <select id="weight-salmon-whole">
+      <option value="4">4 кг</option>
+      <option value="5">5 кг</option>
+      <option value="6">6 кг</option>
+    </select>
+
+    <button onclick="addToCartOption('Сёмга целая',25,document.getElementById('weight-salmon-whole').value)">
+      Добавить в корзину
+    </button>
   </div>
+</div>
 
 <div class="card">
   <img src="IMG_4386.jpeg" alt="Сёмга слабой соли" class="salmon-img">
